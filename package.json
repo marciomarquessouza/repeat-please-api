@@ -1,0 +1,20 @@
+{
+  "name": "repeat-please-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "readme": "node ./node_modules/.bin/node-readme"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "global": "^4.3.2",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "node-readme": "^0.1.9",
+    "readme-generator": "^1.0.1"
+  }
+}
