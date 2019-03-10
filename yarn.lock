@@ -5671,8 +5671,8 @@ uglify-js@^3.1.4:
     commander "~2.17.1"
     source-map "~0.6.1"
 
-uglify-js@~2.2.5:
-  version "2.2.5"
+uglify-js@^2.6.0:
+  version "2.6.0"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.2.5.tgz#a6e02a70d839792b9780488b7b8b184c095c99c7"
   integrity sha1-puAqcNg5eSuXgEiLe4sYTAlcmcc=
   dependencies:
