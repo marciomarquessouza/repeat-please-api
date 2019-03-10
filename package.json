@@ -9,8 +9,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint .",
-      "pre-push": "eslint .",
+      "pre-commit": "eslint ./src --ext .js",
+      "pre-push": "eslint ./src --ext .js",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
