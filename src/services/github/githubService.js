@@ -1,6 +1,7 @@
 
 const request = require('request');
-const config = require('../../config');
+const config = require('../../config/config');
+const githubParse = require('./githubParse');
 
 const getGithub = function(user, repo) {
     return new Promise((resolve, reject) => {
@@ -18,9 +19,19 @@ const getGithub = function(user, repo) {
 
         const githubResponse = (error, response, body) => {
                 if (!error && response.statusCode === 200) {
-                    resolve(JSON.parse(body));
+                    githubParse(
+                        body,
+                        (parseResponse, parseError) => parseError
+                        ? reject(parseError)
+                        : resolve(parseResponse)
+                    );
                 } else {
-                    reject(error);
+                    const errorResponse = {
+                        message: error,
+                        status: 502
+                    };
+
+                    reject(errorResponse);
                 }
         };
 
