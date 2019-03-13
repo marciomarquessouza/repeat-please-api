@@ -1,6 +1,6 @@
 
 const request = require('request');
-const config = require('../../../config');
+const config = require('../../config/config');
 const githubParse = require('./githubParse');
 
 const getGithub = function(user, repo) {
