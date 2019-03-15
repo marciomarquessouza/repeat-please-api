@@ -3,7 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res) => {
-  res.status(200).send({
+  res.status(200).json({
     status: 200,
     title: 'Repeat Please API'
   });

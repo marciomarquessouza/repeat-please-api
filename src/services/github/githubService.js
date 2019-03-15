@@ -5,7 +5,6 @@ const githubParse = require('./githubParse');
 
 const getGithub = function(user, repo) {
     return new Promise((resolve, reject) => {
-
         const options = {
             auth: {
                 pass: config.github.pass,
@@ -26,8 +25,11 @@ const getGithub = function(user, repo) {
                         : resolve(parseResponse)
                     );
                 } else {
+                    const errorBody = JSON.parse(body);
                     const errorResponse = {
-                        message: error,
+                        message: errorBody
+                        ? `Github response: ${errorBody.message}`
+                        : 'Github server error',
                         status: 502
                     };
 
