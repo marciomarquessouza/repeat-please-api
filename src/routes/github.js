@@ -1,5 +1,5 @@
 const express = require('express');
-const github = require('../services/github/githubService');
+const githubService = require('../services/github/githubService');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,8 +10,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/repos/:user/:name', (req, res) => {
-    github(req.params.user, req.params.name).then((githubResult) => {
-        res.status(200).json(githubResult);
+    githubService.getRepo(req.params.user, req.params.name).
+    then((repoResult) => {
+        res.status(200).json(repoResult);
     }).
     catch((error) => {
         res.status(error.status || 500).json(error);

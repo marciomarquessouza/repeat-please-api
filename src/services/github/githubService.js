@@ -1,44 +1,13 @@
+const githubIntegration = require('../../integration/github/githubIntegration');
 
-const request = require('request');
-const config = require('../../config/config');
-const githubParse = require('./githubParse');
-
-const getGithub = function(user, repo) {
-    return new Promise((resolve, reject) => {
-        const options = {
-            auth: {
-                pass: config.github.pass,
-                user: config.github.user
-            },
-            headers: {
-                'User-Agent': 'request'
-            },
-            url: `https://api.github.com/repos/${user}/${repo}`
-        };
-
-        const githubResponse = (error, response, body) => {
-                if (!error && response.statusCode === 200) {
-                    githubParse(
-                        body,
-                        (parseResponse, parseError) => parseError
-                        ? reject(parseError)
-                        : resolve(parseResponse)
-                    );
-                } else {
-                    const errorBody = JSON.parse(body);
-                    const errorResponse = {
-                        message: errorBody
-                        ? `Github response: ${errorBody.message}`
-                        : 'Github server error',
-                        status: 502
-                    };
-
-                    reject(errorResponse);
-                }
-        };
-
-        request(options, githubResponse);
+const getRepo = (user, repo) => new Promise((resolve, reject) => {
+    githubIntegration.repo(user, repo).
+    then((repoResponse) => {
+        resolve(repoResponse);
+    }).
+    catch((error) => {
+        reject(error);
     });
-};
+});
 
-module.exports = getGithub;
+module.exports = { getRepo };
