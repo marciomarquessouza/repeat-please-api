@@ -1,30 +1,27 @@
 require('dotenv').load();
-const createError = require('http-errors');
-const express = require('express');
 const cookieParser = require('cookie-parser');
+const express = require('express');
+const createError = require('http-errors');
 const logger = require('morgan');
-
-const indexRouter = require('./src/routes/index');
-const githubRouter = require('./src/routes/github');
-
 const app = express();
+require('./src/db/mongodb');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', indexRouter);
-app.use('/github', githubRouter);
+app.use('/', require('./src/routes/index'));
+app.use('/auth', require('./src/routes/auth'));
+app.use('/github', require('./src/routes/github'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  // next(createError(404));
+  next(createError(404));
 });
 
 // error handler
 app.use(function(err, req, res) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
