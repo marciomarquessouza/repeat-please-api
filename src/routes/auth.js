@@ -1,41 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const config = require('../config/config');
-const User = require('../models/user');
+const register = require('../actions/auth/register');
+const login = require('../actions/auth/login');
+const logout = require('../actions/auth/logout');
+const verifyToken = require('../actions/auth/verifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 router.get('/', (req, res) => {
-    res.status(200).send('auth working');
+    res.status(200).json({
+        status: 200,
+        title: 'Authorization'
+    });
 });
 
-router.post('/register', (req, res) => {
-    const hashPassword = bcrypt.hashSync(req.body.password, 8);
+router.post('/register', (req, res) => register(req, res));
 
-    User.create({
-        email: req.body.email,
-        name: req.body.name,
-        password: hashPassword
-    }, (error, user) => {
-        if (error) {
-            return res.status(500).
-            send(error);
-        }
+router.post('/login', (req, res) => login(req, res));
 
-        const token = jwt.sign(
-            { id: user._id },
-            config.secret,
-            { expiresIn: 900 }
-        );
+router.post('/logout', (req, res) => logout(req, res));
 
-        return res.status(200).send({
-            auth: true,
-            token
-        });
+router.get('/user', verifyToken, (req, res) => {
+    res.status(200).json({
+        status: 200,
+        userId: req.userId
     });
 });
 
