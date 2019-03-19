@@ -11,9 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', require('./src/routes/index'));
-app.use('/auth', require('./src/routes/auth'));
-app.use('/github', require('./src/routes/github'));
+app.use('/repeat-please', require('./src/routes/index'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
