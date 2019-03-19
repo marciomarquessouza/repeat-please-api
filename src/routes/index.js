@@ -8,4 +8,7 @@ router.get('/', (req, res) => {
   });
 });
 
+router.use('/auth', require('./auth'));
+router.use('/github', require('./github'));
+
 module.exports = router;
