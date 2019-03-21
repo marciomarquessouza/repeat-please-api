@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const config = require('../../config/config');
-const User = require('../../models/user');
+const User = require('../models/user');
 
 const register = (req, res) => {
     const hashPassword = bcrypt.hashSync(req.body.password, 8);
@@ -16,9 +15,11 @@ const register = (req, res) => {
             send(error);
         }
 
+        const secret = process.env.SECRET;
+
         const token = jwt.sign(
             { id: user._id },
-            config.secret,
+            secret,
             { expiresIn: 900 }
         );
 

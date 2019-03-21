@@ -81,3 +81,10 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# config files
+src/config/dev.env
+src/config/test.env
+
+# vscode file
+.vscode

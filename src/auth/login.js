@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const config = require('../../config/config');
-const User = require('../../models/user');
+const User = require('../models/user');
 
 const login = (req, res) => User.
 findOne({ email: req.body.email }, (error, user) => {
@@ -34,9 +33,11 @@ findOne({ email: req.body.email }, (error, user) => {
         });
     }
 
+    const secret = process.env.SECRET;
+
     const token = jwt.sign(
         { id: user._id },
-        config.secret,
+        secret,
         { expiresIn: 900 }
     );
 

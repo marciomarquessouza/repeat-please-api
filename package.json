@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "debug": "env-cmd ./src/config/dev.env node --inspect bin/www",
+    "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "eslint ./src --ext .js",
-    "dev": "nodemon bin/www --exec 'yarn lint && node'",
-    "start": "./bin/www"
+    "start": "./bin/www",
+    "test": "jest --watch"
   },
   "husky": {
     "hooks": {
@@ -26,13 +28,13 @@
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.19",
     "morgan": "~1.9.0",
-    "node-readme": "^0.1.9",
     "request": "^2.88.0",
     "validator": "^10.11.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-conventional": "^7.5.0",
+    "env-cmd": "^8.0.2",
     "husky": "^1.3.1",
     "jest": "^24.3.1",
     "nodemon": "^1.18.10"

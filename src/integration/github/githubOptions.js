@@ -1,9 +1,10 @@
-const config = require('../../config/config');
+const user = process.env.GIT_USER;
+const pass = process.env.GIT_PASS;
 
 const options = (url) => ({
     auth: {
-        pass: config.github.pass,
-        user: config.github.user
+        pass,
+        user
     },
     headers: {
         'User-Agent': 'request'

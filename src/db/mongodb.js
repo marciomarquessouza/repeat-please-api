@@ -1,8 +1,7 @@
-const config = require('../config/config');
 const mongoose = require('mongoose');
 
-const connectionURL = config.mongodb.url;
-const databaseName = config.mongodb.database;
+const connectionURL = process.env.DATABASE_URL;
+const databaseName = process.env.DATABASE;
 
 mongoose.connect(`${connectionURL}/${databaseName}`, {
     useNewUrlParser: true,

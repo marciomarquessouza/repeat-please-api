@@ -1,4 +1,3 @@
-require('dotenv').load();
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const createError = require('http-errors');
