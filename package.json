@@ -7,7 +7,10 @@
     "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "eslint ./src --ext .js",
     "start": "./bin/www",
-    "test": "jest --watch"
+    "test": "env-cmd ./src/config/test.env jest --watch"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "husky": {
     "hooks": {
@@ -37,6 +40,7 @@
     "env-cmd": "^8.0.2",
     "husky": "^1.3.1",
     "jest": "^24.3.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   }
 }
