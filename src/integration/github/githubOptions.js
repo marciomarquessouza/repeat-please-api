@@ -1,5 +1,5 @@
-const user = process.env.GIT_USER;
-const pass = process.env.GIT_PASS;
+const config = require('../../config/config');
+const { user, pass } = config.github;
 
 const options = (url) => ({
     auth: {

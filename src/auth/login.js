@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const token = require('../auth/token');
 const User = require('../models/user');
 
 const login = (req, res) => User.
@@ -33,19 +33,20 @@ findOne({ email: req.body.email }, (error, user) => {
         });
     }
 
-    const secret = process.env.SECRET;
-
-    const token = jwt.sign(
-        { id: user._id },
-        secret,
-        { expiresIn: 900 }
-    );
-
-    return res.status(200).json({
-        auth: true,
-        code: 200,
-        message: 'Authenticated',
-        token
+    token(user._id)
+    .then((userToken) => {
+        return res.status(200).json({
+            auth: true,
+            message: 'Authenticated',
+            token: userToken
+        });
+    })
+    .catch((tokenError) => {
+        return res.status(500).json({
+            auth: false,
+            message: tokenError,
+            token: null
+        });
     });
 });
 

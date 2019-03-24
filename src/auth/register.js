@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const checkRequiredFields = require('../utils/checkRequiredsFields');
+const token = require('./token');
 
 const register = (req, res) => {
 
@@ -35,18 +35,20 @@ const register = (req, res) => {
             send(error);
         }
 
-        const secret = process.env.SECRET;
-
-        const token = jwt.sign(
-            { id: user._id },
-            secret,
-            { expiresIn: 900 }
-        );
-
-        return res.status(201).send({
-            auth: true,
-            message: 'User registered',
-            token
+        token(user._id)
+        .then((userToken) => {
+            return res.status(201).json({
+                auth: true,
+                message: 'User registered',
+                token: userToken
+            });
+        })
+        .catch((tokenError) => {
+            return res.status(500).json({
+                auth: false,
+                message: tokenError,
+                token: null
+            });
         });
     });
 };
