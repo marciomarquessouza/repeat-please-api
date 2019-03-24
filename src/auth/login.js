@@ -27,7 +27,7 @@ findOne({ email: req.body.email }, (error, user) => {
     if (!checkPass) {
         return res.status(403).json({
             auth: false,
-            code: 401,
+            code: 403,
             message: 'Unauthorized',
             token: null
         });

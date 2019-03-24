@@ -5,12 +5,14 @@
   "scripts": {
     "debug": "env-cmd ./src/config/dev.env node --inspect bin/www",
     "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
+    "uat": "env-cmd ./src/config/test.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "eslint ./src --ext .js",
     "start": "./bin/www",
     "test": "env-cmd ./src/config/test.env jest --watch"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "verbose": true
   },
   "husky": {
     "hooks": {
