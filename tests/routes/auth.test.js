@@ -1,24 +1,16 @@
 const request = require('supertest');
 const app = require('../../app');
 const User = require('../../src/models/user');
+const bcrypt = require('bcryptjs');
 
-const userToRegister = {
-    name: 'dummy1',
-    email: 'dummy1.user@email.com',
-    password: 'passDummy1'
-};
-
-const userToLogin = {
-    name: 'dummy2',
-    email: 'dummy2.user@email.com',
-    password: 'passDummy2'
+const dummyUser = {
+    name: 'dummy',
+    email: 'dummy.user@email.com',
+    password: 'passDummy'
 };
 
 beforeEach(async () => {
     await User.deleteMany();
-    await User.create(userToLogin, (error, user) => {
-        if (error) return console.log('Error: ' + error);
-    });
 });
 
 describe('GET /repeat-please/auth', () => {
@@ -35,7 +27,7 @@ describe('POST /repeat-please/auth/register', () => {
     it('Should answer with 201 - created', (done) => {
         request(app)
         .post('/repeat-please/auth/register')
-        .send(userToRegister)
+        .send(dummyUser)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(201)
@@ -47,12 +39,24 @@ describe('POST /repeat-please/auth/register', () => {
 });
 
 describe('POST /repeat-please/auth/login', () => {
+    beforeEach(async () => {
+        const userToLogin = {
+            email: dummyUser.email,
+            name: dummyUser.name,
+            password: await bcrypt.hash(dummyUser.password, 8)
+        };
+
+        await User.create(userToLogin, (error, user) => {
+            if (error) return console.log('Error: ' + error);
+        });
+    });
+
     it('Should answer wiht 200 - ok', (done) => {
         request(app)
         .post('/repeat-please/auth/login')
         .send({
-            email: 'dummy2.user@email.com',
-            password: 'passDummy2'
+            email: dummyUser.email,
+            password: dummyUser.password
         })
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
