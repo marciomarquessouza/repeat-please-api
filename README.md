@@ -10,9 +10,9 @@ Repeat Please API using Node (Express)
 
 https://trello.com/b/rCI1z7dc/repeat-please-3x
 
-## SWAGGER
+## Documentation
 
-https://app.swaggerhub.com/apis/marciosouza/repeat-please-api/1.0.0
+https://repeatpleaseapi.docs.apiary.io/#
 
 ## Components Strucuture and BPMN
 
