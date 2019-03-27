@@ -2,7 +2,9 @@ module.exports = {
     port: process.env.PORT || 5000,
     database: {
         name: process.env.DATABASE,
-        url: process.env.DATABASE_URL
+        rawUrl: process.env.DATABASE_URL,
+        user: process.env.DATABASE_USER,
+        pass: process.env.DATABASE_PASS
     },
     github: {
         user: process.env.GIT_USER,
