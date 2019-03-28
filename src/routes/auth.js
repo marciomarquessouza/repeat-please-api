@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const register = require('../actions/auth/register');
-const login = require('../actions/auth/login');
-const logout = require('../actions/auth/logout');
-const verifyToken = require('../actions/auth/verifyToken');
+const register = require('../auth/register');
+const login = require('../auth/login');
+const logout = require('../auth/logout');
+const verifyToken = require('../middlewares/verifyToken');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());

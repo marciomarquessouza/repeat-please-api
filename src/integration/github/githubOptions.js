@@ -1,9 +1,10 @@
 const config = require('../../config/config');
+const { user, pass } = config.github;
 
 const options = (url) => ({
     auth: {
-        pass: config.github.pass,
-        user: config.github.user
+        pass,
+        user
     },
     headers: {
         'User-Agent': 'request'

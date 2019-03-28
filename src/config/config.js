@@ -1,44 +1,17 @@
-require('dotenv').load();
-
-const github = {
-    pass: process.env.GIT_PASS,
-    user: process.env.GIT_USER
-};
-
-const envConfig = {
-    development: {
-        app: {
-            port: 8080
-        },
-        github,
-        mongodb: {
-            database: 'repeat-please-dev',
-            url: 'mongodb://localhost:27017'
-        },
-        secret: process.env.secret
+module.exports = {
+    port: process.env.PORT || 5000,
+    database: {
+        name: process.env.DATABASE_NAME,
+        rawUrl: process.env.DATABASE_URL,
+        user: process.env.DATABASE_USER,
+        pass: process.env.DATABASE_PASS
     },
-    test: {
-        app: {
-            port: 8080
-        },
-        github,
-        mongodb: {
-            database: 'repeat-please-dev',
-            url: 'mongodb://localhost:27017'
-        },
-        secret: process.env.secret
+    github: {
+        user: process.env.GIT_USER,
+        pass: process.env.GIT_PASS
     },
-    production: {
-        app: {
-            port: 8080
-        },
-        github,
-        mongodb: {
-            database: 'repeat-please-dev',
-            url: 'mongodb://localhost:27017'
-        },
-        secret: process.env.secret
+    token: {
+        secret: process.env.SECRET,
+        expires: 900
     }
 };
-
-module.exports = envConfig[process.env.environment];

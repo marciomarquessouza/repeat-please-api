@@ -1,10 +1,15 @@
 const config = require('../config/config');
+const mongoURL = require('./mongoURL');
 const mongoose = require('mongoose');
 
-const connectionURL = config.mongodb.url;
-const databaseName = config.mongodb.database;
+const connectionURL =
+mongoURL(
+    config.database.name,
+    config.database.user,
+    config.database.pass
+    );
 
-mongoose.connect(`${connectionURL}/${databaseName}`, {
+mongoose.connect(connectionURL, {
     useNewUrlParser: true,
     useCreateIndex: true
 });
