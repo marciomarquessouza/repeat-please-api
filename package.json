@@ -8,7 +8,7 @@
     "uat": "env-cmd ./src/config/test.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "eslint ./src --ext .js",
     "start": "./bin/www",
-    "test": "env-cmd ./src/config/test.env jest --watch"
+    "test": "env-cmd ./src/config/test.env jest --coverage"
   },
   "jest": {
     "testEnvironment": "node",
