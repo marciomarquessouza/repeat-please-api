@@ -11,22 +11,13 @@ describe('mongoURL.js - mongoDB Cloud', () => {
   
     it('Should return Mongo URL with user, pass and database', () => {  
         expect(mongoURL(
+            CLOUD_DB_URL,
             cloudDBParameters.database,
             cloudDBParameters.user,
             cloudDBParameters.pass,
-            CLOUD_DB_URL
             ))
         .toBe('mongodb+srv://dummyUser:dummyPass@cluster0-xtseo.mongodb.net/dummyDB?retryWrites=true'); 
     });
-
-    it('Should return Mongo Url when the user doesnt send the raw URL', () => {
-        expect(mongoURL(
-            cloudDBParameters.database,
-            cloudDBParameters.user,
-            cloudDBParameters.pass
-            ))
-        .toBe('mongodb+srv://dummyUser:dummyPass@cluster0-xtseo.mongodb.net/dummyDB?retryWrites=true');
-    });  
 });
 
 describe('mongoURL.js - localhost', () => {
@@ -40,10 +31,10 @@ describe('mongoURL.js - localhost', () => {
     
     it('Should return Mongo URL with user, pass and database', () => {  
         expect(mongoURL(
+            LOCAL_DB_URL,
             localDBParameters.database,
             localDBParameters.user,
-            localDBParameters.pass,
-            LOCAL_DB_URL
+            localDBParameters.pass
             ))
         .toBe('mongodb://localhost:27017/dummyDB'); 
     });

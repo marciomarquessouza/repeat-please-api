@@ -16,7 +16,7 @@ module.exports = {
         pass: process.env.GIT_PASS
     },
     token: {
-        secret: process.env.SECRET,
+        secret: process.env.SECRET || 'secret',
         expires: 900
     }
 };
