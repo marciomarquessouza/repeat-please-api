@@ -3,7 +3,13 @@ const express = require('express');
 const createError = require('http-errors');
 const logger = require('morgan');
 const app = express();
-require('./src/db/mongodb');
+const dbConnection = require('./src/db/mongodb');
+
+dbConnection
+.then((message) => console.log(message))
+.catch((error) => {
+  throw new Error(error);
+});
 
 app.use(logger('dev'));
 app.use(express.json());

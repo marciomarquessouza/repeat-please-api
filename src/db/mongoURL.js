@@ -1,14 +1,12 @@
 const config = require('../config/config');
-const DATABASE_URL = config.database.rawUrl;
+const DATABASE_URL = config.database.rawURL;
 
-module.exports = (dbName, dbUser, dbPass, rawURL = DATABASE_URL) => {
-
-    const checkArgs =
-    [dbName, dbUser, dbPass].filter((arg) => arg === undefined);
-
-    if (checkArgs.length > 0) {
-        throw new Error(`There're ${checkArgs.length} missing args`);
-    }
+module.exports = (
+    rawURL = DATABASE_URL,
+    dbName = '',
+    dbUser = '',
+    dbPass = ''
+    ) => {
 
     const dbParamenters = {
         DATABASE_NAME: dbName,
