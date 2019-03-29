@@ -9,12 +9,13 @@ const dummyUser = {
     password: 'passDummy'
 };
 
-beforeEach(async () => {
+beforeEach(async (done) => {
     await User.deleteMany();
+    done();
 });
 
 describe('GET /repeat-please/auth', () => {
-    it('Should return with 200 - ok', (done) => {
+    it('Should return with 200 - ok', async (done) => {
         request(app)
         .get('/repeat-please/auth')
         .set('Accept', 'application/json')
@@ -24,7 +25,7 @@ describe('GET /repeat-please/auth', () => {
 })
 
 describe('POST /repeat-please/auth/register', () => {
-    it('Should answer with 201 - created', (done) => {
+    it('Should answer with 201 - created', async (done) => {
         request(app)
         .post('/repeat-please/auth/register')
         .send(dummyUser)
@@ -51,7 +52,7 @@ describe('POST /repeat-please/auth/login', () => {
         });
     });
 
-    it('Should answer wiht 200 - ok', (done) => {
+    it('Should answer wiht 200 - ok', async (done) => {
         request(app)
         .post('/repeat-please/auth/login')
         .send({

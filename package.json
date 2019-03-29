@@ -7,8 +7,9 @@
     "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
     "uat": "env-cmd ./src/config/test.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "eslint ./src --ext .js",
-    "start": "./bin/www",
-    "test": "env-cmd ./src/config/test.env jest --coverage"
+    "start": "env-cmd ./src/config/dev.env ./bin/www",
+    "test_local": "env-cmd ./src/config/test.env jest --coverage --detectOpenHandles",
+    "test": "jest --detectOpenHandles --forceExit --maxWorkers=10"
   },
   "jest": {
     "testEnvironment": "node",
@@ -31,6 +32,7 @@
     "global": "^4.3.2",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.5.0",
+    "moment": "^2.24.0",
     "mongoose": "^5.4.19",
     "morgan": "~1.9.0",
     "request": "^2.88.0",
