@@ -9,7 +9,7 @@
     "lint": "eslint ./src --ext .js",
     "start": "env-cmd ./src/config/dev.env ./bin/www",
     "test_local": "env-cmd ./src/config/test.env jest --coverage --detectOpenHandles",
-    "test": "jest"
+    "test": "jest --detectOpenHandles --forceExit --maxWorkers=10"
   },
   "jest": {
     "testEnvironment": "node",
