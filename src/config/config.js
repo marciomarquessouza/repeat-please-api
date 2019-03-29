@@ -1,5 +1,6 @@
 module.exports = {
     port: process.env.PORT || 5000,
+    environment: process.env.ENV || '',
     database: {
         name: process.env.DATABASE_NAME || 'repeat-please-test',
         server: process.env.DATABASE_SERVER || 'Local Server',
