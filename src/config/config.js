@@ -18,6 +18,7 @@ module.exports = {
     },
     token: {
         secret: process.env.SECRET || 'secret',
-        expires: 900
+        expires: 900,
+        salt: 8
     }
 };

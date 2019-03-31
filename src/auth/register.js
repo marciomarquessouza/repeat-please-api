@@ -1,53 +1,37 @@
+const config = require('../config/config');
 const bcrypt = require('bcryptjs');
-const User = require('../models/user');
-const checkRequiredFields = require('../utils/checkRequiredsFields');
 const token = require('./token');
+const User = require('../models/user');
 
-const register = (req, res) => {
+const register = (email, name = '', password) => {
 
-    checkRequiredFields(
-        req.body,
-        [
-            'name',
-            'email',
-            'password'
-        ],
-        (missingFields) => {
-            if (missingFields) {
-                return res.status(500).
-                json({
-                    auth: false,
-                    message: `Fields ${missingFields.join(',')} are requireds`
-                });
+    return new Promise((resolve, reject) => {
+
+        if (password === undefined) {
+            return reject(new Error('Password is required'));
+        }
+
+        if (email === undefined) {
+            return reject(new Error('Email is required'));
+        }
+
+        bcrypt.hash(password, config.token.salt, (hashError, hashPassword) => {
+
+            if (hashError) {
+                return reject(new Error('Token - hash error'));
             }
-        }
-    );
 
-    const hashPassword = bcrypt.hashSync(req.body.password, 8);
+            User.create({
+                email,
+                name,
+                password: hashPassword
+            }, (dbError, user) => {
 
-    User.create({
-        email: req.body.email,
-        name: req.body.name,
-        password: hashPassword
-    }, (error, user) => {
-        if (error) {
-            return res.status(500).
-            send(error);
-        }
+                if (dbError) return reject(new Error('Database error'));
 
-        token(user._id)
-        .then((userToken) => {
-            return res.status(201).json({
-                auth: true,
-                message: 'User registered',
-                token: userToken
-            });
-        })
-        .catch((tokenError) => {
-            return res.status(500).json({
-                auth: false,
-                message: tokenError,
-                token: null
+                token(user._id)
+                .then((userToken) => resolve(userToken))
+                .catch(() => reject(new Error('Token error')));
             });
         });
     });
