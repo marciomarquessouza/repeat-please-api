@@ -1,6 +1,5 @@
 const register = require('../auth/register');
 const login = require('../auth/login');
-const logout = require('../auth/logout');
 const user = require('../auth/user');
 const authRes = require('../auth/authResponse');
 
@@ -44,5 +43,20 @@ exports.login = (req, res) => {
     });
 };
 
-exports.logout = logout;
-exports.user = user;
+exports.user = (req, res) => {
+    user(req.userId).then((fetchedUser) => {
+        const token = req.headers['x-access-token'];
+
+        authRes(res, 'Authorized', 200, true, token, fetchedUser);
+    })
+    .catch((error) => {
+        const type = {
+            '404': (message) => authRes(res, message, 404),
+            'default': () => authRes(res, 'Internal error', 500)
+        };
+
+        (type[error.status.toString()] || type.default)(error.message);
+    });
+};
+
+exports.logout = (req, res) => authRes(res, 'Logout', 200, true);

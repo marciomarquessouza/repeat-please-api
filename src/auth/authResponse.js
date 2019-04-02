@@ -3,11 +3,13 @@ module.exports = (
     message,
     status = 500,
     auth = false,
-    token = null
+    token = null,
+    user = null
     ) => {
     res.status(status).json({
         auth,
         message,
-        token
+        token,
+        user
     });
 };
