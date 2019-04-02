@@ -2,9 +2,6 @@
   "name": "repeat-please-api",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": ">=11.10.1"
-  },
   "scripts": {
     "debug": "env-cmd ./src/config/dev.env node --inspect bin/www",
     "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
