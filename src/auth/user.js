@@ -8,12 +8,7 @@ module.exports = (userId) => User.findOne({
         if (error) {
             return reject(new AppError('User not found', 404));
         }
-
-        const fetchedUser = {
-            name: user.name,
-            email: user.email
-        };
-
-        resolve(fetchedUser);
+        resolve({ ...user });
         });
 });
+

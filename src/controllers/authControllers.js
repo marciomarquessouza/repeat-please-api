@@ -3,7 +3,7 @@ const login = require('../auth/login');
 const user = require('../auth/user');
 const authRes = require('../auth/authResponse');
 
-exports.register = (req, res) => {
+module.exports.register = (req, res) => {
     register(
         req.body.email,
         req.body.name,
@@ -23,7 +23,7 @@ exports.register = (req, res) => {
         });
 };
 
-exports.login = (req, res) => {
+module.exports.login = (req, res) => {
     login(
         req.body.email,
         req.body.password
@@ -43,8 +43,9 @@ exports.login = (req, res) => {
     });
 };
 
-exports.user = (req, res) => {
-    user(req.userId).then((fetchedUser) => {
+module.exports.user = (req, res) => {
+    user(req.userId)
+    .then((fetchedUser) => {
         const token = req.headers['x-access-token'];
 
         authRes(res, 'Authorized', 200, true, token, fetchedUser);
@@ -59,4 +60,4 @@ exports.user = (req, res) => {
     });
 };
 
-exports.logout = (req, res) => authRes(res, 'Logout', 200, true);
+module.exports.logout = (req, res) => authRes(res, 'Logout', 200, true);
