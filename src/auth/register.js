@@ -2,23 +2,25 @@ const config = require('../config/config');
 const bcrypt = require('bcryptjs');
 const token = require('./token');
 const User = require('../models/user');
+const AuthError = require('../errors/AuthError');
+const DBError = require('../errors/DatabaseError');
 
 const register = (email, name = '', password) => {
 
     return new Promise((resolve, reject) => {
 
         if (password === undefined) {
-            return reject(new Error('Password is required'));
+            return reject(new AuthError('Password is required', 403));
         }
 
         if (email === undefined) {
-            return reject(new Error('Email is required'));
+            return reject(new AuthError('Email is required', 403));
         }
 
         bcrypt.hash(password, config.token.salt, (hashError, hashPassword) => {
 
             if (hashError) {
-                return reject(new Error('Token - hash error'));
+                return reject(new AuthError('Token - hash error', 403));
             }
 
             User.create({
@@ -27,11 +29,11 @@ const register = (email, name = '', password) => {
                 password: hashPassword
             }, (dbError, user) => {
 
-                if (dbError) return reject(new Error('Database error'));
+                if (dbError) return reject(new DBError('Database error', 500));
 
                 token(user._id)
                 .then((userToken) => resolve(userToken))
-                .catch(() => reject(new Error('Token error')));
+                .catch(() => reject(new AuthError('Token error', 403)));
             });
         });
     });

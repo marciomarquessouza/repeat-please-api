@@ -1,53 +1,37 @@
 const bcrypt = require('bcryptjs');
 const token = require('../auth/token');
 const User = require('../models/user');
+const AppError = require('../errors/AppError');
+const AuthError = require('../errors/AuthError');
+const DBError = require('../errors/DatabaseError');
 
-const login = (req, res) => User.
-findOne({ email: req.body.email }, (error, user) => {
-    if (error) {
-        return res.status(500).json({
-            auth: false,
-            code: 500,
-            message: 'Server error trying to find the user',
-            token: null
-        });
-    }
+const login = (email, password) => new Promise((resolve, reject) => {
+        User.findOne({ email }, (error, user) => {
 
-    if (!user) {
-        return res.status(404).json({
-            auth: false,
-            code: 404,
-            message: 'User not found',
-            token: null
-        });
-    }
+            if (error) {
+                return reject(new DBError('Database Error', 500));
+            }
 
-    const checkPass = bcrypt.compareSync(req.body.password, user.password);
+            if (!user) {
+                return reject(new AppError('User not found', 404));
+            }
 
-    if (!checkPass) {
-        return res.status(403).json({
-            auth: false,
-            code: 403,
-            message: 'Unauthorized',
-            token: null
-        });
-    }
+            if (!password) {
+                return reject(new AuthError('Password required', 403));
+            }
 
-    token(user._id)
-    .then((userToken) => {
-        return res.status(200).json({
-            auth: true,
-            message: 'Authenticated',
-            token: userToken
-        });
-    })
-    .catch((tokenError) => {
-        return res.status(500).json({
-            auth: false,
-            message: tokenError,
-            token: null
+            const checkPass = bcrypt.compareSync(password, user.password);
+
+            if (!checkPass) {
+                return reject(new AuthError('Unauthorized', 403));
+            }
+
+            token(user._id)
+            .then((userToken) => resolve(userToken))
+            .catch((tokenError) => {
+                return reject(new AuthError(tokenError.message, 500));
+            });
         });
     });
-});
 
 module.exports = login;
