@@ -1,3 +1,4 @@
+
 module.exports = {
     "env": {
         "browser": true,
@@ -6,6 +7,7 @@ module.exports = {
         "node": true
     },
     "extends": "eslint:recommended",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2015
     },
@@ -41,7 +43,7 @@ module.exports = {
         "computed-property-spacing": "error",
         "consistent-return": "off",
         "consistent-this": "error",
-        "curly": "error",
+        "curly": "off",
         "default-case": "error",
         "dot-location": "off",
         "dot-notation": [

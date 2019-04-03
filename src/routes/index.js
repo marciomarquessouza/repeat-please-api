@@ -1,13 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const ping = require('../utils/ping');
 
-router.get('/', (req, res) => {
-  res.status(200).json({
-    status: 200,
-    title: 'Repeat Please API'
-  });
-});
-
+router.get('/', (req, res) => ping(req, res, 'Repeat Please API'));
 router.use('/auth', require('./auth'));
 router.use('/github', require('./github'));
 

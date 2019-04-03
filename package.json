@@ -6,7 +6,7 @@
     "debug": "env-cmd ./src/config/dev.env node --inspect bin/www",
     "dev": "env-cmd ./src/config/dev.env nodemon bin/www --exec 'yarn lint && node'",
     "uat": "env-cmd ./src/config/test.env nodemon bin/www --exec 'yarn lint && node'",
-    "lint": "eslint ./src --ext .js",
+    "lint": "./node_modules/.bin/eslint ./src --ext .js",
     "start": "env-cmd ./src/config/dev.env ./bin/www",
     "test_local": "env-cmd ./src/config/test.env jest --coverage --detectOpenHandles",
     "test": "jest --detectOpenHandles --forceExit --maxWorkers=10"
@@ -17,17 +17,19 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint ./src --ext .js",
-      "pre-push": "eslint ./src --ext .js",
+      "pre-commit": "./node_modules/.bin/eslint ./src --ext .js",
+      "pre-push": "./node_modules/.bin/eslint ./src --ext .js",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.2.0",
+    "eslint": "5.15.0",
     "express": "~4.16.0",
     "global": "^4.3.2",
     "http-errors": "~1.6.2",
