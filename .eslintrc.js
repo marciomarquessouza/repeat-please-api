@@ -1,15 +1,16 @@
+
 module.exports = {
     "env": {
         "browser": true,
         "es6": true,
-        "amd": false,
+        "amd": true,
         "node": true
     },
     "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 8
-    },
     "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 2015
+    },
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-newline": "error",

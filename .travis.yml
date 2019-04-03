@@ -8,3 +8,4 @@ services:
   - mongodb 
 script:
   - yarn test
+  - yarn lint
