@@ -21,7 +21,7 @@ const repo = function(user, repoName) {
                     message: errorBody
                     ? `Github response: ${errorBody.message}`
                     : 'Github server error',
-                    status: 502
+                    status: response.statusCode || 502
                 };
 
                 reject(errorResponse);
