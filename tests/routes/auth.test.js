@@ -68,3 +68,25 @@ describe('POST /repeat-please/auth/login', () => {
         });
     });  
 });
+
+describe('GET /repeat-please/auth/user', ()=> {
+    beforeEach(async () => {
+        const userToFound = {
+            _id: '746573742d69642d75736572',
+            email: dummyUser.email,
+            name: dummyUser.name,
+            password: await bcrypt.hash(dummyUser.password, 8)
+        };
+
+        await User.create(userToFound, (error, user) => {
+            if (error) return console.log('Error: ' + error);
+        });
+    });
+
+    it('Should answer with 200 - ok - user found', (done) => {
+        request(app)
+        .get('/repeat-please/auth/user')
+        .set('x-access-token', 'my-token')
+        .expect(200, done)
+    });
+})
