@@ -19,7 +19,7 @@ beforeEach((done) => {
 });
 
 describe('GET /repeat-please/auth', () => {
-    it('Should answer 200 - ok', (done) => {
+    it('Should return with 200 - ok', (done) => {
         request(app)
         .get('/repeat-please/auth')
         .set('Accept', 'application/json')
@@ -28,20 +28,21 @@ describe('GET /repeat-please/auth', () => {
     });
 });
 
-describe('POST /repeat-please/auth/register', () => {
-    it('Should answer 201 - created', (done) => {
-        request(app)
-        .post('/repeat-please/auth/register')
-        .send(dummyUser)
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/u)
-        .expect(201)
-        .end((err) => {
-            if (err) return (done(err));
-            done();
-        });
-    });
-});
+
+// describe('POST /repeat-please/auth/register', () => {
+//     it('Should answer with 201 - created', (done) => {
+//         request(app)
+//         .post('/repeat-please/auth/register')
+//         .send(dummyUser)
+//         .set('Accept', 'application/json')
+//         .expect('Content-Type', /json/)
+//         .expect(201)
+//         .end((err) => {
+//             if (err) return(done(err));
+//             done();
+//         });
+//     });
+// });
 
 describe('POST /repeat-please/auth/login', () => {
     beforeEach(async () => {
@@ -57,7 +58,7 @@ describe('POST /repeat-please/auth/login', () => {
         });
     });
 
-    it('Should answer 200 - ok', (done) => {
+    it('Should answer wiht 200 - ok', (done) => {
         request(app)
         .post('/repeat-please/auth/login')
         .send({
