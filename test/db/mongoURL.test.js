@@ -1,4 +1,5 @@
 const mongoURL = require('../../src/db/mongoURL');
+const { expect } = require('chai');
 
 describe('mongoURL.js - mongoDB Cloud', () => {
     const cloudDBParameters = {
@@ -8,7 +9,7 @@ describe('mongoURL.js - mongoDB Cloud', () => {
       };
 
     const CLOUD_DB_URL = 'mongodb+srv://DATABASE_USER:DATABASE_PASS@cluster0-xtseo.mongodb.net/DATABASE_NAME?retryWrites=true';
-  
+
     it('Should return Mongo URL with user, pass and database', () => {  
         expect(mongoURL(
             CLOUD_DB_URL,
@@ -16,7 +17,7 @@ describe('mongoURL.js - mongoDB Cloud', () => {
             cloudDBParameters.user,
             cloudDBParameters.pass,
             ))
-        .toBe('mongodb+srv://dummyUser:dummyPass@cluster0-xtseo.mongodb.net/dummyDB?retryWrites=true'); 
+        .to.equal('mongodb+srv://dummyUser:dummyPass@cluster0-xtseo.mongodb.net/dummyDB?retryWrites=true'); 
     });
 });
 
@@ -28,7 +29,7 @@ describe('mongoURL.js - localhost', () => {
       };
 
     const LOCAL_DB_URL = 'mongodb://localhost:27017/DATABASE_NAME';
-    
+
     it('Should return Mongo URL with user, pass and database', () => {  
         expect(mongoURL(
             LOCAL_DB_URL,
@@ -36,6 +37,6 @@ describe('mongoURL.js - localhost', () => {
             localDBParameters.user,
             localDBParameters.pass
             ))
-        .toBe('mongodb://localhost:27017/dummyDB'); 
+        .to.equal('mongodb://localhost:27017/dummyDB');
     });
-})
+});
