@@ -1,5 +1,5 @@
 const request = require('request');
-const githubParse = require('../../parse/github/githubRepoParse');
+const githubParse = require('../../parses/github/githubRepoParse');
 const githubOptions = require('./githubOptions');
 
 const repo = function(user, repoName) {
@@ -8,6 +8,7 @@ const repo = function(user, repoName) {
 
     return new Promise((resolve, reject) => {
         const githubResponse = (error, response, body) => {
+
             if (!error && response.statusCode === 200) {
                 githubParse(
                     body,
@@ -28,7 +29,7 @@ const repo = function(user, repoName) {
             }
         };
 
-        request(githubOptions(url), githubResponse);
+        request.get(githubOptions(url), githubResponse);
     });
 };
 

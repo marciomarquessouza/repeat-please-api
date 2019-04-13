@@ -1,7 +1,7 @@
-const githubIntegration = require('../../integration/github/githubIntegration');
+const github = require('../../integrations/github/githubIntegration');
 
 const repository = (user, repo) => new Promise((resolve, reject) => {
-    githubIntegration.repo(user, repo).
+    github.repo(user, repo).
     then((repoResponse) => {
         resolve(repoResponse);
     }).

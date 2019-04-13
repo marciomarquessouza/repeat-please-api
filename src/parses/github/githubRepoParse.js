@@ -11,15 +11,11 @@ module.exports = (body, callback) => {
         watchers: content.watchers_count
     });
 
-    const jsonParse = JSON.parse(body);
+    try {
+        return callback(githubParse(JSON.parse(body)));
+    } catch (error) {
+        error.status = 502;
 
-    return jsonParse
-    ? callback(githubParse(jsonParse))
-    : callback(
-        undefined,
-        {
-            message: 'parse error',
-            status: 502
-        }
-    );
+        return callback(null, error);
+    }
 };

@@ -1,7 +1,7 @@
 const config = require('../config/config');
 const bcrypt = require('bcryptjs');
 const token = require('./token');
-const User = require('../models/user');
+const User = require('../db/models/users/user');
 const AuthError = require('../errors/AuthError');
 const DBError = require('../errors/DatabaseError');
 
