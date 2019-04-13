@@ -1,20 +1,22 @@
 const githubService = require('../services/github/githubService');
+const Response = require('../domain/responses/Response');
 
 module.exports.repository = (req, res) => {
     githubService.repository(req.params.user, req.params.name)
     .then((repo) => {
-        res.status(200).json(repo);
+        const response = new Response(res, 'ok', 200, true, null, repo);
+        response.send();
     })
     .catch((error) => {
         const type = {
-            '401': (err) => res.status(401).json(err.message),
-            '403': (err) => res.status(403).json(err.message),
-            '404': (err) => res.status(404).json(err.message),
-            '500': (err) => res.status(500).json(err.message),
-            '502': (err) => res.status(502).json(err.message),
+            '401': (err) => new Response(res, err.message, 401).send(),
+            '403': (err) => new Response(res, err.message, 403).send(),
+            '404': (err) => new Response(res, err.message, 404).send(),
+            '500': (err) => new Response(res, err.message, 500).send(),
+            '502': (err) => new Response(res, err.message, 502).send(),
             'default':
-                (err) => res.status(err.status || 500)
-                .send(err.message || 'Internal error')
+                (err) => new Response(res, err.message || 'Internal error', 502)
+                .send()
         };
 
         (type[error.status.toString()] || type.default)(error);

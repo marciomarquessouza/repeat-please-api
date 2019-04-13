@@ -1,5 +1,5 @@
 const request = require('request');
-const githubParse = require('../../parse/github/githubRepoParse');
+const githubParse = require('../../parses/github/githubRepoParse');
 const githubOptions = require('./githubOptions');
 
 const repo = function(user, repoName) {

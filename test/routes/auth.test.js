@@ -4,7 +4,7 @@ const app = require('../../app.js');
 const sinon = require('sinon');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../../src/models/users/user');
+const User = require('../../src/db/models/users/user');
 
 const dummyUser = {
     _id: 'dummy_id',

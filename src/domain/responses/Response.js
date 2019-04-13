@@ -1,26 +1,32 @@
-class AuthResponse {
+class response {
     constructor(
+        res,
         message,
         status = 500,
         auth = false,
         token = null,
-        user = null
+        body = null
     ) {
+        this.res = res;
         this.message = message;
         this.status = status;
         this.auth = auth;
         this.token = token;
-        this.user = user;
+        this.body = body;
     }
 
-    get response() {
+    get json() {
         return {
             auth: this.auth,
             message: this.message,
             token: this.token,
-            user: this.user
+            body: this.body
         };
+    }
+
+    send() {
+        this.res.status(this.status).json(this.json);
     }
 }
 
-module.exports = AuthResponse;
+module.exports = response;

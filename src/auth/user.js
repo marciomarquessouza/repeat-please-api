@@ -1,4 +1,4 @@
-const User = require('../models/users/user');
+const User = require('../db/models/users/user');
 const AppError = require('../errors/AppError');
 
 module.exports = (userId) => User.findOne({

@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const app = require('../../app');
 const sinon = require('sinon');
 const request = require('request');
-const githubResponse = require('../__mocks__/githubResponse.json');
+const githubResponse = require('../helper/githubResponse.json');
 
 describe('GET repeat-please/github/repo/:user/:name', () => {
 
