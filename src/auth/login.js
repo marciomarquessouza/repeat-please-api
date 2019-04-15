@@ -30,7 +30,7 @@ const login = (email, password) => {
             token(user._id)
             .then((userToken) => resolve(userToken))
             .catch((tokenError) => {
-                return reject(new AuthError(tokenError.message, 500));
+                return reject(new AuthError(tokenError, 500));
             });
         });
     });

@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 const { expect } = require('chai');
 const sinon = require('sinon');
 const bcrypt = require('bcryptjs');
@@ -18,10 +16,11 @@ describe('src/auth/login.js', () => {
     };
 
     beforeEach(() => {
-        compareSync = sinon.stub(bcrypt, 'compareSync').returns(true);
-        sign = sinon.stub(jwt, 'sign').returns('my-token');
+        compareSync = sinon.stub(bcrypt, 'compareSync');
+        find = sinon.stub(User, 'findOne');
+        sign = sinon.stub(jwt, 'sign');
     });
-    
+
     afterEach(() => {
         find.restore();
         compareSync.restore();
@@ -30,7 +29,10 @@ describe('src/auth/login.js', () => {
     });
 
     it('Should return an User', (done) => {
-        find = sinon.stub(User, 'findOne').yields(null, dummyUser);
+        compareSync.returns(true);
+        find.yields(null, dummyUser);
+        sign.returns('my-token');
+
         login(dummyUser.email, dummyUser.password).then((token) => {
             expect(token).to.equal('my-token');
             done();
@@ -41,20 +43,67 @@ describe('src/auth/login.js', () => {
     });
 
     it('Should return an Error', async () => {
-        find = sinon.stub(User, 'findOne').yields(new Error('Sinon Error'));
+        compareSync.returns(true);
+        find.yields(new Error('Sinon Error'));
+        sign.returns('my-token');
 
         await login(dummyUser.email, dummyUser.password)
         .catch((error) => {
             expect(error).to.be.an('error');
+            expect(error.message).to.equal('Database Error');
+            expect(error.code).to.equal(500);
         });
     });
 
-    it('Should return an Database Error Message', async () => {
-        find = sinon.stub(User, 'findOne').yields(new Error('Sinon Error'));
+    it('Should return User Not Found', async () => {
+        compareSync.returns(true);
+        find.yields(null, null);
+        sign.returns('my-token');
 
         await login(dummyUser.email, dummyUser.password)
         .catch((error) => {
-                expect(error.message).to.equal('Database Error');
+            expect(error).to.be.an('error');
+            expect(error.message).to.equal('User not found');
+            expect(error.code).to.equal(404);
+        })
+    });
+
+    it('Should return password required', async () => {
+        compareSync.returns(true);
+        find.yields(null, dummyUser);
+        sign.returns('my-token');
+
+        await login(dummyUser.email, null)
+        .catch((error) => {
+            expect(error).to.be.an('error');
+            expect(error.message).to.equal('Password required');
+            expect(error.code).to.equal(403);
+        });
+    });
+
+    it('Should return Unauthorized', async () => {
+        compareSync.returns(false);
+        find.yields(null, dummyUser);
+        sign.returns('my-token');
+
+        await login(dummyUser.email, dummyUser.password)
+        .catch((error) => {
+            expect(error).to.be.an('error');
+            expect(error.message).to.equal('Unauthorized');
+            expect(error.code).to.equal(403);
+        });
+    });
+
+    it('Should return a token error', async () => {
+        compareSync.returns(true);
+        find.yields(null, dummyUser);
+        sign.returns(Promise.reject('Token Error'));
+
+        await login(dummyUser.email, dummyUser.password)
+        .catch((error) => {
+            expect(error).to.be.an('error');
+            expect(error.message).to.equal('Token Error');
+            expect(error.code).to.equal(500);
         });
     });
 });

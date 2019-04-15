@@ -10,8 +10,9 @@ module.exports = (userId, expiresIn = config.token.expires) => {
 
     return new Promise((resolve, reject) => {
       if (token) {
-          resolve(token);
+          return resolve(token);
       }
-      reject(new Error('Error to gererate Token'));
+
+      return reject(new Error('Error to gererate Token'));
     });
 };
