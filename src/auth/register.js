@@ -9,18 +9,18 @@ const register = (email, name = '', password) => {
 
     return new Promise((resolve, reject) => {
 
-        if (password === undefined) {
+        if (!password) {
             return reject(new AuthError('Password is required', 403));
         }
 
-        if (email === undefined) {
+        if (!email) {
             return reject(new AuthError('Email is required', 403));
         }
 
         bcrypt.hash(password, config.token.salt, (hashError, hashPassword) => {
 
             if (hashError) {
-                return reject(new AuthError('Token - hash error', 403));
+                return reject(new AuthError('Token error - hash', 403));
             }
 
             User.create({
@@ -33,7 +33,7 @@ const register = (email, name = '', password) => {
 
                 token(user._id)
                 .then((userToken) => resolve(userToken))
-                .catch(() => reject(new AuthError('Token error', 403)));
+                .catch(() => reject(new AuthError('Token error - jwt', 403)));
             });
         });
     });

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../../src/db/models/users/user');
 const login = require('../../src/auth/login');
 
-describe('src/auth/login.js', () => {
+describe('auth/login.js', () => {
 
     let find, compareSync, sign;
     const dummyUser = {
