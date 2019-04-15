@@ -5,7 +5,8 @@ const AppError = require('../errors/AppError');
 const AuthError = require('../errors/AuthError');
 const DBError = require('../errors/DatabaseError');
 
-const login = (email, password) => new Promise((resolve, reject) => {
+const login = (email, password) => {
+    return new Promise((resolve, reject) => {
         User.findOne({ email }, (error, user) => {
 
             if (error) {
@@ -33,5 +34,6 @@ const login = (email, password) => new Promise((resolve, reject) => {
             });
         });
     });
+};
 
 module.exports = login;
