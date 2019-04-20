@@ -1,12 +1,12 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const bcrypt = require('bcryptjs');
-const User = require('../../src/db/models/users/user');
-const jwt = require('jsonwebtoken');
+const User = require('../../src/models/users/User');
 const register = require('../../src/auth/register');
+const token = require('../../src/auth/token');
+const AuthError = require('../../src/errors/AuthError');
 
 describe('auth/register.js', () => {
-    let create, hash, sign;
+    let createUser, hash, createToken;
     const dummyUser = {
         _id: 'dummy_id',
         name: 'dummy',
@@ -15,22 +15,21 @@ describe('auth/register.js', () => {
     };
 
     beforeEach(() => {
-        create = sinon.stub(User, 'create');
-        hash = sinon.stub(bcrypt, 'hash');
-        sign = sinon.stub(jwt, 'sign');
+        createUser = sinon.stub(User, 'create');
+        hash = sinon.stub(token, 'hash');
+        createToken = sinon.stub(token, 'create');
     });
 
     afterEach(() => {
-        create.restore();
+        createUser.restore();
         hash.restore();
-        sign.restore();
-        sinon.reset();
+        createToken.restore();
     });
 
     it('Should register a new user', (done) => {
-        create.yields(null, dummyUser);
-        hash.yields(null, 'secret');
-        sign.returns('my-token');
+        createUser.yields(null, dummyUser);
+        hash.returns(Promise.resolve('secret'));
+        createToken.returns(Promise.resolve('my-token'));
 
         register(dummyUser.email, dummyUser.name, dummyUser.password)
         .then((token) => {
@@ -39,51 +38,32 @@ describe('auth/register.js', () => {
         });
     });
 
-    it('Should return Password is required', async () => {
-        create.yields(null, dummyUser);
-        hash.yields(null, 'secret');
-        sign.returns('my-token');
-
-        await register(dummyUser.email, dummyUser.name, null)
-        .catch((error) => {
-            expect(error).to.be.an('error');
-            expect(error.message).to.equal('Password is required');
-            expect(error.code).to.equal(403);
-        });
-    });
-
-    it('Should return Email is required', async () => {
-        create.yields(null, dummyUser);
-        hash.yields(null, 'secret');
-        sign.returns('my-token');
-
-        await register(null, dummyUser.name, dummyUser.password)
-        .catch((error) => {
-            expect(error).to.be.an('error');
-            expect(error.message).to.equal('Email is required');
-            expect(error.code).to.equal(403);
-        });
-    });
-
     it('Should return a Token-hash error', async () => {
-        create.yields(null, dummyUser);
-        hash.yields(new Error('Token error'));
-        sign.returns('my-token');
+        createUser.yields(null, dummyUser);
+        hash.returns(Promise.reject(new AuthError('Token error - hash', 500)));
+        createToken.returns(Promise.resolve('my-token'));
 
         await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        .then(() => {
+            throw new Error('Erro was not generated');
+        })
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Token error - hash');
-            expect(error.code).to.equal(403);
+            expect(error.code).to.equal(500);
         });
     });
 
     it('Should return a Database error', async () => {
-        create.yields(new Error('Database error'));
-        hash.yields(null, 'secret');
-        sign.returns('my-token');
+
+        createUser.yields(new Error('Database error'));
+        hash.returns(Promise.resolve('secret'));
+        createToken.returns(Promise.resolve('my-token'));
 
         await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        .then(() => {
+            throw new Error('Erro was not generated');
+        })
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Database error');
@@ -92,15 +72,18 @@ describe('auth/register.js', () => {
     });
 
     it('Should return a Token-jwt error', async () => {
-        create.yields(null, dummyUser);
-        hash.yields(null, 'secret');
-        sign.returns(Promise.reject('Token Error'));
+        createUser.yields(null, dummyUser);
+        hash.returns(Promise.resolve('secret'));
+        createToken.returns(Promise.reject(new AuthError('Token creation error', 500)));
 
         await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        .then(() => {
+            throw new Error('Erro was not generated');
+        })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.message).to.equal('Token error - jwt');
-            expect(error.code).to.equal(403);
+            expect(error.message).to.equal('Token creation error');
+            expect(error.code).to.equal(500);
         });
     });
 });

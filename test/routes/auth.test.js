@@ -2,9 +2,8 @@
 const request = require('supertest');
 const app = require('../../app.js');
 const sinon = require('sinon');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../../src/db/models/users/user');
+const User = require('../../src/models/users/User');
+const token = require('../../src/auth/token');
 
 const dummyUser = {
     _id: 'dummy_id',
@@ -25,15 +24,25 @@ describe('GET /repeat-please/auth', () => {
 
 describe('POST /repeat-please/auth/register', () => {
 
+    let createUser, hash, createToken;
+
     beforeEach(() => {
-        sinon.stub(User, 'create').yields(null, dummyUser);
+        createUser = sinon.stub(User, 'create');
+        hash = sinon.stub(token, 'hash');
+        createToken = sinon.stub(token, 'create');
     });
-    
+
     afterEach(() => {
-        sinon.reset()
+        createUser.restore();
+        hash.restore();
+        createToken.restore();
     });
 
     it('Should answer with 201 - created', (done) => {
+        createUser.yields(null, dummyUser);
+        hash.returns(Promise.resolve('secret'));
+        createToken.returns(Promise.resolve('my-token'));
+
         request(app)
         .post('/repeat-please/auth/register')
         .send(dummyUser)
@@ -49,20 +58,26 @@ describe('POST /repeat-please/auth/register', () => {
 
 describe('POST /repeat-please/auth/login', () => {
 
-    let find;
+    let find, checkPass, create;
 
     beforeEach(() => {
-        find = sinon.stub(User, 'findOne').yields(null, dummyUser);
-        sinon.stub(bcrypt, 'compareSync').returns(true);
-        sinon.stub(jwt, 'sign').returns('my-token');
+        find = sinon.stub(User, 'findOne');
+        checkPass = sinon.stub(token, 'checkPass');
+        create = sinon.stub(token, 'create');
     });
-    
+
     afterEach(() => {
         find.restore();
-        sinon.reset()
+        checkPass.restore();
+        create.restore();
     });
 
     it('Should answer wiht 200 - ok', (done) => {
+
+        find.yields(null, dummyUser);
+        checkPass.returns(Promise.resolve(true));
+        create.returns(Promise.resolve('my-token'));
+
         request(app)
         .post('/repeat-please/auth/login')
         .send({
@@ -94,19 +109,23 @@ describe('POST /repeat-please/auth/logout', () => {
 
 describe('GET /repeat-please/auth/user', () => {
 
-    let find;
+    let find, verify;
 
     beforeEach(() => {
-        find = sinon.stub(User, 'findOne').yields(null, dummyUser);
-        sinon.stub(jwt, 'verify').yields(null, { id: dummyUser._id });
-    });
-    
-    afterEach(() => {
-        find.restore();
-        sinon.reset()
+        find = sinon.stub(User, 'findOne');
+        verify = sinon.stub(token, 'verify');
     });
 
+    afterEach(() => {
+        find.restore();
+        verify.restore();
+    })
+
     it('Should answer with 200 - ok - user found', (done) => {
+
+        find.yields(null, dummyUser);
+        verify.yields(null, { id: 'my_id' });
+
         request(app)
         .get('/repeat-please/auth/user')
         .set('x-access-token', 'my-token')

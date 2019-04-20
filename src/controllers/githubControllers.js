@@ -1,5 +1,5 @@
 const githubService = require('../services/github/githubService');
-const Response = require('../domain/responses/Response');
+const Response = require('../models/responses/Response');
 
 module.exports.repository = (req, res) => {
     githubService.repository(req.params.user, req.params.name)
