@@ -2,7 +2,7 @@
   <img src="https://github.com/marciomarquessouza/repeat-please/blob/master/src/assets/ui/logos/logo-header.png" width="400px" />  
 </p>  
 
-<img src="https://travis-ci.org/marciomarquessouza/repeat-please-api.svg?branch=master" />
+[![Build Status](https://travis-ci.org/marciomarquessouza/repeat-please-api.svg?branch=master)](https://travis-ci.org/marciomarquessouza/repeat-please-api)
 
 ## Repeat Please API
 
