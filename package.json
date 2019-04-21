@@ -8,7 +8,7 @@
     "uat": "env-cmd ./src/config/test.env nodemon bin/www --exec 'yarn lint && node'",
     "lint": "./node_modules/.bin/eslint ./src --ext .js",
     "start": "env-cmd ./src/config/dev.env ./bin/www",
-    "test": "mocha --recursive",
+    "test": "nyc --reporter=html --reporter=text mocha --recursive",
     "coverage": "nyc report --reporter=text-lcov  | coveralls",
     "opencoverage": "google-chrome ./coverage/index.html"
   },
