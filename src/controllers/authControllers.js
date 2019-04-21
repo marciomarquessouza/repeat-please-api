@@ -1,7 +1,7 @@
 const register = require('../auth/register');
 const login = require('../auth/login');
 const user = require('../auth/user');
-const Response = require('../domain/responses/Response');
+const Response = require('../models/responses/Response');
 
 module.exports.register = (req, res) => {
     register(
@@ -20,7 +20,7 @@ module.exports.register = (req, res) => {
                 'default': () => new Response(res, 'Server Error', 500).send()
             };
 
-            (type[error.status.toString()] || type.default)(error.message);
+            (type[error.status] || type.default)(error.message);
         });
 };
 
@@ -41,7 +41,7 @@ module.exports.login = (req, res) => {
             'default': () => new Response(res, 'Internal error', 500).send()
         };
 
-        (type[error.status.toString()] || type.default)(error.message);
+        (type[error.status] || type.default)(error.message);
     });
 };
 
@@ -59,7 +59,7 @@ module.exports.user = (req, res) => {
             'default': () => new Response(res, 'Internal error', 500).send()
         };
 
-        (type[error.status.toString()] || type.default)(error.message);
+        (type[error.status] || type.default)(error.message);
     });
 };
 

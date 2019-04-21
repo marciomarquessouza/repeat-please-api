@@ -1,8 +1,8 @@
 module.exports = class DatabaseError extends Error {
-    constructor(message, status) {
+    constructor(message, code) {
         super(message);
-        this.name = this.constructor.name;
+        this.message = message;
         Error.captureStackTrace(this, this.constructor);
-        this.status = status || 500;
+        this.code = code || 500;
     }
 };

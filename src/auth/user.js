@@ -1,14 +1,16 @@
-const User = require('../db/models/users/user');
-const AppError = require('../errors/AppError');
+const User = require('../models/users/User');
 
-module.exports = (userId) => User.findOne({
-    _id: userId
-}, { password: 0 }, (error, user) => {
+module.exports = (userId) => {
     return new Promise((resolve, reject) => {
-        if (error) {
-            return reject(new AppError('User not found', 404));
-        }
-        resolve({ ...user });
-        });
-});
+        new User({ _id: userId })
+        .findUserById()
+        .then((user) => {
+            user.password = undefined;
 
+            return resolve(user);
+        })
+        .catch((error) => {
+            return reject(error);
+        });
+    });
+};
