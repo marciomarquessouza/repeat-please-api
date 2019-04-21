@@ -2,6 +2,8 @@
   <img src="https://github.com/marciomarquessouza/repeat-please/blob/master/src/assets/ui/logos/logo-header.png" width="400px" />  
 </p>  
 
+<img src="https://travis-ci.org/marciomarquessouza/repeat-please-api.svg?branch=master" />
+
 ## Repeat Please API
 
 Repeat Please API using Node (Express)
