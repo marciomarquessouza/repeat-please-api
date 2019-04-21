@@ -3,6 +3,7 @@
 </p>  
 
 [![Build Status](https://travis-ci.org/marciomarquessouza/repeat-please-api.svg?branch=master)](https://travis-ci.org/marciomarquessouza/repeat-please-api)
+[![Coverage Status](https://coveralls.io/repos/github/marciomarquessouza/repeat-please-api/badge.svg?branch=master)](https://coveralls.io/github/marciomarquessouza/repeat-please-api?branch=master)
 
 ## Repeat Please API
 
