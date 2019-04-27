@@ -12,7 +12,7 @@ const repo = function(user, repoName) {
             if (!error && response.statusCode === 200) {
                 githubParse(
                     body,
-                    (parseResponse, parseError) => parseError
+                    (parseError, parseResponse) => parseError
                     ? reject(parseError)
                     : resolve(parseResponse)
                 );

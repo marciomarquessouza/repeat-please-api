@@ -4,8 +4,19 @@ const sinon = require('sinon');
 const request = require('request');
 const githubResponse = require('../helper/githubResponse.json');
 
-describe('GET repeat-please/github/repo/:user/:name', () => {
+describe('GET repeat-please/github', () => {
+    it('Should answer 200 - ok', (done) => {
+        supertest(app)
+        .get('/repeat-please/github')
+        .expect(200)
+        .end((error) => {
+            if (error) done(error);
+            done();
+        });
+    });
+});
 
+describe('GET repeat-please/github/repo/:user/:name', () => {
 
     it('Should answer 200 - ok', (done) => {
         const requestGet = sinon.stub(request, 'get').yields(null, { statusCode: 200 }, JSON.stringify(githubResponse));

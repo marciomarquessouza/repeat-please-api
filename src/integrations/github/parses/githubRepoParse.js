@@ -12,10 +12,9 @@ module.exports = (body, callback) => {
     });
 
     try {
-        return callback(githubParse(JSON.parse(body)));
+        return callback(null, githubParse(JSON.parse(body)));
     } catch (error) {
-        error.status = 502;
-
-        return callback(null, error);
+        error.code = 502;
+        return callback(error);
     }
 };
