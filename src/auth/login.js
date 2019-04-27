@@ -16,8 +16,6 @@ module.exports = (email, password) => {
             .create(user._id)
             .then((userToken) => resolve(userToken));
         })
-        .catch(((error) => {
-            return reject(error);
-        }));
+        .catch((error) => reject(error));
     });
 };
