@@ -1,6 +1,5 @@
 const token = require('../auth/token');
 const User = require('../models/users/User');
-const logger = require('../config/winston');
 
 module.exports = (email, password) => {
     return new Promise((resolve, reject) => {
