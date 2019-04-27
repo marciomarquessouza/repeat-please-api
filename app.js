@@ -1,9 +1,9 @@
 const cookieParser = require('cookie-parser');
 const express = require('express');
-const logger = require('morgan');
 const app = express();
+const logger = require('./src/config/logger');
 
-app.use(logger('dev'));
+app.use(require('morgan')('combined', { 'stream': logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

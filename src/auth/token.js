@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
-const AuthError = require('../errors/AuthError');
+const AuthError = require('../exceptions/AuthException');
 
 module.exports = {
    create: (userId, expiresIn = config.token.expires) => {
