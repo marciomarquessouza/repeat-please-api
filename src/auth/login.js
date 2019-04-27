@@ -1,5 +1,6 @@
 const token = require('../auth/token');
 const User = require('../models/users/User');
+const logger = require('../config/winston');
 
 module.exports = (email, password) => {
     return new Promise((resolve, reject) => {
@@ -16,8 +17,6 @@ module.exports = (email, password) => {
             .create(user._id)
             .then((userToken) => resolve(userToken));
         })
-        .catch(((error) => {
-            return reject(error);
-        }));
+        .catch((error) => reject(error));
     });
 };
