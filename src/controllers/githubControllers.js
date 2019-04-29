@@ -19,6 +19,6 @@ module.exports.repository = (req, res) => {
                 .send()
         };
 
-        (type[error.status.toString()] || type.default)(error);
+        (type[error.code] || type.default)(error);
     });
 };
