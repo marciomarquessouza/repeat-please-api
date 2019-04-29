@@ -1,6 +1,7 @@
 const request = require('request');
-const githubParse = require('../../parses/github/githubRepoParse');
+const githubParse = require('./parses/githubRepoParse');
 const githubOptions = require('./githubOptions');
+const IntegrationError = require('../../exceptions/IntegrationException');
 
 const repo = function(user, repoName) {
 
@@ -12,9 +13,12 @@ const repo = function(user, repoName) {
             if (!error && response.statusCode === 200) {
                 githubParse(
                     body,
-                    (parseResponse, parseError) => parseError
-                    ? reject(parseError)
-                    : resolve(parseResponse)
+                    (parseError, parseResponse) => {
+                        if (parseError) {
+                            return reject(parseError);
+                        }
+                        return resolve(parseResponse);
+                    }
                 );
             } else {
                 const errorBody = JSON.parse(body);
@@ -22,10 +26,13 @@ const repo = function(user, repoName) {
                     message: errorBody
                     ? `Github response: ${errorBody.message}`
                     : 'Github server error',
-                    status: response.statusCode || 502
+                    code: response.statusCode || 502
                 };
 
-                reject(errorResponse);
+                return reject(new IntegrationError(
+                    errorResponse.message,
+                    errorResponse.code
+                    ));
             }
         };
 

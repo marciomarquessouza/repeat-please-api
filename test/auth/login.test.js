@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const User = require('../../src/models/users/User');
 const login = require('../../src/auth/login');
 const token = require('../../src/auth/token');
-const AuthError = require('../../src/errors/AuthError');
+const AuthError = require('../../src/exceptions/AuthException');
 
 describe('auth/login.js', () => {
 

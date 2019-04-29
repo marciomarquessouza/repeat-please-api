@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../config/config');
-const AuthError = require('../errors/AuthError');
+const AuthError = require('../exceptions/AuthException');
 
 module.exports = {
    create: (userId, expiresIn = config.token.expires) => {
@@ -34,7 +34,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             bcrypt.compare(userPass, comparePass, (error, res) => {
                 if (error) {
-                    return reject(new AuthError('Password Error', 500));
+                    return reject(new AuthError(error.message, 500));
                 }
 
                 if (!res) {

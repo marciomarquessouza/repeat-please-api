@@ -18,9 +18,14 @@ const logger = createLogger({
     format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
     }),
-    format.json()
+    format.colorize(),
+    format.simple()
   ),
   transports: [dailyRotateFileTransport]
 });
+
+logger.stream.write = function(message) {
+    logger.info(message);
+};
 
 module.exports = logger;
