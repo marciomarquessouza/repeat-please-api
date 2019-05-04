@@ -1,7 +1,7 @@
 const token = require('./token');
 const User = require('../models/users/User');
 
-module.exports = (email, name = '', password) => {
+module.exports = (email, name, password) => {
 
     return new Promise((resolve, reject) => {
         token.hash(password)

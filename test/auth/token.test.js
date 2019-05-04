@@ -50,7 +50,7 @@ describe('auth/token', () => {
 
     it('Should verify and decode a new token', (done) => {
         verify.yields(null, { id: dummyUser._id });
-        token.verify('my-token', null, (error, decoded) => {
+        token.verify('my-token', (error, decoded) => {
             expect(decoded.id).to.be.equal(dummyUser._id);
             done();
         });
@@ -60,7 +60,7 @@ describe('auth/token', () => {
         verify.yields(new Error('Invalid Token'));
         await token.verify('my-token', null, (error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(403);
+            expect(error.code).to.be.equal(401);
         });
     });
 
@@ -93,7 +93,7 @@ describe('auth/token', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(403);
+            expect(error.code).to.be.equal(401);
         })
     });
 

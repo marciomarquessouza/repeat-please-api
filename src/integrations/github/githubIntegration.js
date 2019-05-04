@@ -21,18 +21,23 @@ const repo = function(user, repoName) {
                     }
                 );
             } else {
-                const errorBody = JSON.parse(body);
-                const errorResponse = {
-                    message: errorBody
-                    ? `Github response: ${errorBody.message}`
-                    : 'Github server error',
-                    code: response.statusCode || 502
-                };
+                try {
+                    const errorBody = JSON.parse(body);
+                    const errorResponse = {
+                        message: `Github response: ${errorBody.message}`,
+                        code: response.statusCode
+                    };
 
-                return reject(new IntegrationError(
-                    errorResponse.message,
-                    errorResponse.code
-                    ));
+                    return reject(new IntegrationError(
+                        errorResponse.message,
+                        errorResponse.code
+                        ));
+                } catch (err) {
+                    return reject(new IntegrationError(
+                        err.message,
+                        502
+                        ));
+                }
             }
         };
 

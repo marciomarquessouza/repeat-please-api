@@ -1,11 +1,8 @@
-const config = require('../config/config');
-const DATABASE_URL = config.database.rawURL;
-
 module.exports = (
-    rawURL = DATABASE_URL,
-    dbName = '',
-    dbUser = '',
-    dbPass = ''
+    rawURL,
+    dbName,
+    dbUser,
+    dbPass
     ) => {
 
     const dbParamenters = {

@@ -1,10 +1,8 @@
-const register = require('../auth/register');
-const login = require('../auth/login');
-const user = require('../auth/user');
+const auth = require('../auth/auth');
 const Response = require('../models/responses/Response');
 
 module.exports.register = (req, res) => {
-    register(
+    auth.register(
         req.body.email,
         req.body.name,
         req.body.password
@@ -15,7 +13,7 @@ module.exports.register = (req, res) => {
         })
         .catch((error) => {
             const type = {
-                '403': (message) => new Response(res, message, 403).send(),
+                '401': (message) => new Response(res, message, 401).send(),
                 '500': (message) => new Response(res, message, 500).send(),
                 'default': () => new Response(res, 'Server Error', 500).send()
             };
@@ -25,7 +23,8 @@ module.exports.register = (req, res) => {
 };
 
 module.exports.login = (req, res) => {
-    login(
+
+    auth.login(
         req.body.email,
         req.body.password
     )
@@ -35,7 +34,7 @@ module.exports.login = (req, res) => {
     })
     .catch((error) => {
         const type = {
-            '403': (message) => new Response(res, message, 403).send(),
+            '401': (message) => new Response(res, message, 401).send(),
             '404': (message) => new Response(res, message, 404).send(),
             '500': (message) => new Response(res, message, 500).send(),
             'default': () => new Response(res, 'Internal error', 500).send()
@@ -46,7 +45,7 @@ module.exports.login = (req, res) => {
 };
 
 module.exports.user = (req, res) => {
-    user(req.userId)
+    auth.user(req.userId)
     .then((fetchedUser) => {
         const token = req.headers['x-access-token'];
         const response =

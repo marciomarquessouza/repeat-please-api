@@ -1,7 +1,7 @@
 const logger = require('../config/logger');
 
 module.exports = class DatabaseException extends Error {
-    constructor(message, code = 500, level = 'error') {
+    constructor(message, code, level) {
         super(message);
         this.message = message;
         this.code = code;
