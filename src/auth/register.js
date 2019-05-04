@@ -18,7 +18,7 @@ module.exports = (email, name = '', password) => {
         .then((id) => {
             return token
             .create(id)
-            .then((userToken) => resolve(userToken))
+            .then((userToken) => resolve(userToken));
         })
         .catch((error) => {
             return reject(error);
