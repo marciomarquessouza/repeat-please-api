@@ -2,7 +2,7 @@ class response {
     constructor(
         res,
         message,
-        status = 500,
+        status,
         auth = false,
         token = null,
         body = null

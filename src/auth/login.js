@@ -3,7 +3,6 @@ const User = require('../models/users/User');
 
 module.exports = (email, password) => {
     return new Promise((resolve, reject) => {
-
         new User({ email })
         .findUserByEmail()
         .then((user) => {

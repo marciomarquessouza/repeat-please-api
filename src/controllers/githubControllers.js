@@ -15,7 +15,7 @@ module.exports.repository = (req, res) => {
             '500': (err) => new Response(res, err.message, 500).send(),
             '502': (err) => new Response(res, err.message, 502).send(),
             'default':
-                (err) => new Response(res, err.message || 'Internal error', 502)
+                (err) => new Response(res, err.message, 502)
                 .send()
         };
 

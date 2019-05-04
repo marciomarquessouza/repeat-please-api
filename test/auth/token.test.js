@@ -50,7 +50,7 @@ describe('auth/token', () => {
 
     it('Should verify and decode a new token', (done) => {
         verify.yields(null, { id: dummyUser._id });
-        token.verify('my-token', null, (error, decoded) => {
+        token.verify('my-token', (error, decoded) => {
             expect(decoded.id).to.be.equal(dummyUser._id);
             done();
         });

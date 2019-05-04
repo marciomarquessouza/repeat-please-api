@@ -32,6 +32,20 @@ describe('GET repeat-please/github/repo/:user/:name', () => {
         });
     });
 
+    it('Should answer 500 - Internal server error', (done) => {
+        const requestGet = sinon.stub(request, 'get').yields(null, { statusCode: 200 }, githubResponse);
+    
+        const user = 'marciomarquessouza';
+        const pass = 'repeat-please';
+        supertest(app)
+        .get(`/repeat-please/github/repo/${user}/${pass}`)
+        .expect(500)
+        .end(() => {
+            requestGet.restore();
+            done();
+        });
+    });
+
     it("Should answer 404 - URL with a typo error", (done) => {
         const user = 'marciomarquessouza';
         const pass = 'repeat-please';
@@ -141,4 +155,19 @@ describe('GET repeat-please/github/repo/:user/:name', () => {
         });
     });
 
+    it("Should answer 502 - Internal Server Error (default) ", (done) => {
+        const githubError = new Error('Internal Server Error');
+        const requestGet = sinon.stub(request, 'get').yields(githubError);
+
+        const user = 'marciomarquessouza';
+        const pass = 'repeat-please';
+        supertest(app)
+        .get(`/repeat-please/github/repo/${user}/${pass}`)
+        .expect(502)
+        .end((error) => {
+            requestGet.restore();
+            if (error) return done(error);
+            done();
+        });
+    });
 });

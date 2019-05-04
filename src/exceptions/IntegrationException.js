@@ -1,7 +1,7 @@
 const logger = require('../config/logger');
 
 module.exports = class IntegrationException extends Error {
-    constructor(message, code = 502, level = 'error') {
+    constructor(message, code, level = 'error') {
         super(message);
         this.message = message;
         this.code = code;

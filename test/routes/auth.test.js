@@ -128,6 +128,32 @@ describe('POST /repeat-please/auth/login', () => {
         });
     });
 
+    it('Should answer wiht 400 when the user mail was not sent', (done) => {
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: null,
+            password: dummyUser.password
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(400, done);
+    });
+
+    it('Should answer wiht 400 when the user pass was not sent', (done) => {
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: dummyUser.email,
+            password: null
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(400, done);
+    });
+
     it('Should answer wiht 401 - Unauthorized', (done) => {
 
         login.rejects(new AuthError('Unauthorized', 401));
@@ -241,6 +267,21 @@ describe('GET /repeat-please/auth/user', () => {
         .get('/repeat-please/auth/user')
         .set('x-access-token', 'my-token')
         .expect(200, done)
+    });
+
+    it('Should answer with 401 when the tokens was not sent', (done) => {
+        request(app)
+        .get('/repeat-please/auth/user')
+        .expect(401, done)
+    });
+
+    it('Should answer with 401 - tokes was not validated', (done) => {
+        verify.yields(new Error('token was not validated'));
+
+        request(app)
+        .get('/repeat-please/auth/user')
+        .set('x-access-token', 'my-token')
+        .expect(401, done)
     });
 
     it('Should answer with 404 - user not found', (done) => {
