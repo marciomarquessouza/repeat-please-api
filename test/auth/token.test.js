@@ -60,7 +60,7 @@ describe('auth/token', () => {
         verify.yields(new Error('Invalid Token'));
         await token.verify('my-token', null, (error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(403);
+            expect(error.code).to.be.equal(401);
         });
     });
 
@@ -93,7 +93,7 @@ describe('auth/token', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(403);
+            expect(error.code).to.be.equal(401);
         })
     });
 

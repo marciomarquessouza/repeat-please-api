@@ -3,6 +3,7 @@ const token = require('../../auth/token');
 const Response = require('../../models/responses/Response');
 
 module.exports = (req, res, next) => {
+
     const reqToken = req.headers['x-access-token'];
 
     if (!reqToken) {

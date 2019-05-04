@@ -23,7 +23,7 @@ module.exports = {
 
         jwt.verify(token, secret, (error, decoded) => {
             if (error) {
-                return callback(new AuthError('Invalid Token', 403));
+                return callback(new AuthError('Invalid Token', 401));
             }
 
             return callback(null, decoded);
@@ -38,7 +38,7 @@ module.exports = {
                 }
 
                 if (!res) {
-                    return reject(new AuthError('Unauthorized', 403));
+                    return reject(new AuthError('Unauthorized', 401));
                 }
 
                 return resolve(res);

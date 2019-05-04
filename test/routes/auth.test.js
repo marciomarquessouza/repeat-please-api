@@ -1,9 +1,10 @@
-/* eslint-disable */
 const request = require('supertest');
 const app = require('../../app.js');
 const sinon = require('sinon');
-const User = require('../../src/models/users/User');
-const token = require('../../src/auth/token');
+const AppError = require('../../src/exceptions/AppException');
+const AuthError = require('../../src/exceptions/AuthException');
+const auth = require('../../src/auth/auth');
+const token = require('../../src/auth/token')
 
 const dummyUser = {
     _id: 'dummy_id',
@@ -24,24 +25,19 @@ describe('GET /repeat-please/auth', () => {
 
 describe('POST /repeat-please/auth/register', () => {
 
-    let createUser, hash, createToken;
+    let register;
 
     beforeEach(() => {
-        createUser = sinon.stub(User, 'create');
-        hash = sinon.stub(token, 'hash');
-        createToken = sinon.stub(token, 'create');
+        register = sinon.stub(auth, 'register');
     });
 
     afterEach(() => {
-        createUser.restore();
-        hash.restore();
-        createToken.restore();
+        register.restore();
     });
 
     it('Should answer with 201 - created', (done) => {
-        createUser.yields(null, dummyUser);
-        hash.returns(Promise.resolve('secret'));
-        createToken.returns(Promise.resolve('my-token'));
+
+        register.resolves('my-token');
 
         request(app)
         .post('/repeat-please/auth/register')
@@ -54,29 +50,68 @@ describe('POST /repeat-please/auth/register', () => {
             done();
         });
     });
+
+    it('Should answer 401 - unauthorized', (done) => {
+        register.rejects(new AuthError('Unauthorized', 401));
+
+        request(app)
+        .post('/repeat-please/auth/register')
+        .send(dummyUser)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(401)
+        .end((err) => {
+            if (err) return(done(err));
+            done();
+        });
+    });
+
+    it('Should answer with 500 - Internal Server Error', (done) => {
+        register.rejects(new AppError('Internal Server Error', 500));
+
+        request(app)
+        .post('/repeat-please/auth/register')
+        .send(dummyUser)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(500)
+        .end((err) => {
+            if (err) return(done(err));
+            done();
+        });
+    });
+
+    it('Should answer with Default 500', (done) => {
+        register.rejects(new Error('Internal Server Error'));
+
+        request(app)
+        .post('/repeat-please/auth/register')
+        .send(dummyUser)    
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(500)
+        .end((err) => {
+            if (err) return(done(err));
+            done();
+        });
+    });
 });
 
 describe('POST /repeat-please/auth/login', () => {
 
-    let find, checkPass, create;
+    let login;
 
     beforeEach(() => {
-        find = sinon.stub(User, 'findOne');
-        checkPass = sinon.stub(token, 'checkPass');
-        create = sinon.stub(token, 'create');
+        login = sinon.stub(auth, 'login');
     });
 
     afterEach(() => {
-        find.restore();
-        checkPass.restore();
-        create.restore();
+        login.restore();
     });
 
     it('Should answer wiht 200 - ok', (done) => {
 
-        find.yields(null, dummyUser);
-        checkPass.returns(Promise.resolve(true));
-        create.returns(Promise.resolve('my-token'));
+        login.resolves('my-token');
 
         request(app)
         .post('/repeat-please/auth/login')
@@ -87,6 +122,82 @@ describe('POST /repeat-please/auth/login', () => {
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/u)
         .expect(200)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('Should answer wiht 401 - Unauthorized', (done) => {
+
+        login.rejects(new AuthError('Unauthorized', 401));
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: dummyUser.email,
+            password: dummyUser.password
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(401)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('Should answer wiht 404 - Not Found', (done) => {
+
+        login.rejects(new AuthError('Not Found', 404));
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: dummyUser.email,
+            password: dummyUser.password
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(404)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('Should answer wiht 500 - Internal Server Error', (done) => {
+
+        login.rejects(new AuthError('Internal Server Error', 500));
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: dummyUser.email,
+            password: dummyUser.password
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(500)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('Should answer wiht Default 500', (done) => {
+
+        login.rejects(new Error('Internal Server Error'));
+
+        request(app)
+        .post('/repeat-please/auth/login')
+        .send({
+            email: dummyUser.email,
+            password: dummyUser.password
+        })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/u)
+        .expect(500)
         .end((err) => {
             if (err) return done(err);
             done();
@@ -109,26 +220,56 @@ describe('POST /repeat-please/auth/logout', () => {
 
 describe('GET /repeat-please/auth/user', () => {
 
-    let find, verify;
+    let user, verify;
 
     beforeEach(() => {
-        find = sinon.stub(User, 'findOne');
+        user = sinon.stub(auth, 'user');
         verify = sinon.stub(token, 'verify');
     });
 
     afterEach(() => {
-        find.restore();
+        user.restore();
         verify.restore();
     })
 
     it('Should answer with 200 - ok - user found', (done) => {
 
-        find.yields(null, dummyUser);
+        user.resolves(dummyUser);
         verify.yields(null, { id: 'my_id' });
 
         request(app)
         .get('/repeat-please/auth/user')
         .set('x-access-token', 'my-token')
         .expect(200, done)
+    });
+
+    it('Should answer with 404 - user not found', (done) => {
+
+        user.rejects(new AuthError('Not Found', 404));
+        verify.yields(null, { id: 'my_id' });
+
+        request(app)
+        .get('/repeat-please/auth/user')
+        .set('x-access-token', 'my-token')
+        .expect(404)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
+    });
+
+    it('Should answer with default 500', (done) => {
+
+        user.rejects(new Error('Internal Server Error'));
+        verify.yields(null, { id: 'my_id' });
+
+        request(app)
+        .get('/repeat-please/auth/user')
+        .set('x-access-token', 'my-token')
+        .expect(500)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });
     });
 });
