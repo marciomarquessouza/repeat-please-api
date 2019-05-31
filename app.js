@@ -11,7 +11,6 @@ app.use(cookieParser());
 
 app.use('/repeat-please', require('./src/routes/index'));
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   const response = new Response(res, 'Not found', 404);
   response.send();
