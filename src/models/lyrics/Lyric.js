@@ -22,7 +22,7 @@ LyricSchema.methods.createLyric = function createLyric(body) {
             if (error) {
                 return reject(new DBError(error.message, 500, 'error'));
             }
-            logger.info(`Lyric "${lyric.title}" created`);
+            logger.info(`Lyric "${lyric.title}" id: ${lyric._id} created`);
             return resolve(lyric);
         });
     });
