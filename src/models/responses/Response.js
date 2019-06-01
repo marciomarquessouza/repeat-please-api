@@ -1,4 +1,4 @@
-class response {
+class Response {
     constructor(
         res,
         message,
@@ -29,4 +29,4 @@ class response {
     }
 }
 
-module.exports = response;
+module.exports = Response;
