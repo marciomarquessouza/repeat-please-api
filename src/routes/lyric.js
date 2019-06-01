@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const lyricController = require('../controllers/lyricController');
+const lyricController = require('../controllers/lyric/lyricController');
 const Response = require('../models/responses/Response');
 
 router.use(bodyParser.urlencoded({ extended: false }));

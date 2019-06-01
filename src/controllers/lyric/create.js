@@ -1,8 +1,8 @@
 const assert = require('assert');
-const AppError = require('../exceptions/AppException');
-const ErrorResponse = require('../models/responses/ErrorResponse');
-const Response = require('../models/responses/Response');
-const { Lyric } = require('../models/lyrics/Lyric');
+const AppError = require('../../exceptions/AppException');
+const ErrorResponse = require('../../models/responses/ErrorResponse');
+const Response = require('../../models/responses/Response');
+const { Lyric } = require('../../models/lyrics/Lyric');
 
 module.exports.create = async (req, res) => {
     try {

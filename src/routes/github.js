@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const githubController = require('../controllers/githubControllers');
+const githubController = require('../controllers/github/githubController');
 const Response = require('../models/responses/Response');
 
 router.get('/', (req, res) => new Response(res, 'Github Repo', 200).send());
