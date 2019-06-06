@@ -4,7 +4,9 @@ const sinon = require('sinon');
 const AppError = require('../../src/exceptions/AppException');
 const AuthError = require('../../src/exceptions/AuthException');
 const auth = require('../../src/auth/auth');
-const token = require('../../src/auth/token')
+const token = require('../../src/auth/token');
+const lyric = require('../../src/controllers/auth');
+const token = require('../../src/auth/token');
 
 const dummyUser = {
     _id: 'dummy_id',
@@ -23,14 +25,21 @@ describe('GET /repeat-please/lyric/ping', () => {
     });
 });
 
-describe('POST /repeat-please/lyric/', () => {
+// describe('POST /repeat-please/lyric/', () => {
     
-    let lyric, verify;
+//     let lyric, verify;
 
-    beforeEach(() => {
-        lyric = sinon.stub()
-    })
-    it('Should answer a new lyric object', (done) => {
+//     beforeEach(() => {
+//         lyric = sinon.stub(lyric, 'create');
+//         verify = sinon.stub(token, 'verify');
+//     });
+
+//     afterEach(() => {
+//         lyric.restore();
+//         verify.restore();
+//     })
+
+//     it('Should answer with 201 - created', (done) => {
         
-    });
-});
+//     });
+// });
