@@ -1,12 +1,8 @@
 const request = require('supertest');
 const app = require('../../app.js');
 const sinon = require('sinon');
-const AppError = require('../../src/exceptions/AppException');
-const AuthError = require('../../src/exceptions/AuthException');
-const auth = require('../../src/auth/auth');
 const token = require('../../src/auth/token');
-const lyric = require('../../src/controllers/auth');
-const token = require('../../src/auth/token');
+const { Lyric } = require('../../src/models/lyrics/Lyric');
 
 const dummyUser = {
     _id: 'dummy_id',
@@ -14,6 +10,18 @@ const dummyUser = {
     email: 'dummy.user@email.com',
     password: 'secret'
 };
+
+const dummyLyric = {
+    title: 'Dummy Title',
+    lines: [
+        {
+            title: 'dummy line 1',
+            start: 10,
+            end: 20,
+            duration: 10
+        }
+    ]
+}
 
 describe('GET /repeat-please/lyric/ping', () => {
     it('Should return with 200 - ok', (done) => {
@@ -27,19 +35,35 @@ describe('GET /repeat-please/lyric/ping', () => {
 
 // describe('POST /repeat-please/lyric/', () => {
     
-//     let lyric, verify;
+    // let createLyric, verify;
 
-//     beforeEach(() => {
-//         lyric = sinon.stub(lyric, 'create');
-//         verify = sinon.stub(token, 'verify');
-//     });
+    // beforeEach(() => {
+    //     createLyric = sinon.stub(new Lyric(), 'createLyric');
+    //     verify = sinon.stub(token, 'verify');
+    // });
 
-//     afterEach(() => {
-//         lyric.restore();
-//         verify.restore();
-//     })
+    // afterEach(() => {
+    //     createLyric.restore();
+    //     verify.restore();
+    // })
 
-//     it('Should answer with 201 - created', (done) => {
+    // it('Should answer with 201 - created', (done) => {
         
-//     });
+    //     createLyric.resolves(dummyLyric);
+    //     verify.yields(null, { id: 'my_id' });
+
+    //     request(app)
+    //     .post('/repeat-please/lyric')
+    //     .send({
+    //         title: dummyLyric.title
+    //     })
+    //     .set('Accept', 'application/json')
+    //     .set('x-access-token', 'my-token')
+    //     .expect('Content-Type', /json/u)
+    //     .expect(201)
+    //     .end((err) => {
+    //         if (err) return(done(err));
+    //         done();
+    //     });
+    // });
 // });
