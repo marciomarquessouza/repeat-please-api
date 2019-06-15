@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const lyricService = require('../../../src/services/lyric');
 const { Lyric } = require('../../../src/models/lyrics/Lyric');
-const mongoose = require('mongoose');
 
 const dummyLyric = {
     title: 'Dummy Title',
@@ -17,18 +16,18 @@ const dummyLyric = {
 };
 
 describe('services/lyric/create', () => {
-    let createLyric;
+    let create;
 
     beforeEach(() => {
-        createLyric = sinon.stub(Lyric.prototype, 'createLyric');
+        create = sinon.stub(Lyric, 'create');
     });
 
     afterEach(() => {
-        createLyric.restore();
+        create.restore();
     });
 
     it('Should return a new Lyric object', async () => {
-        createLyric.returns(Promise.resolve({ title: 'Dummy Title'}));
+        create.returns(Promise.resolve({ title: 'Dummy Title'}));
         await lyricService.create(dummyLyric)
         .then((lyricResponse) => {
             expect(lyricResponse).to.deep.equal({ title: 'Dummy Title' });
@@ -44,7 +43,7 @@ describe('services/lyric/create', () => {
     });
 
     it('Should return a Database Error', async () => {
-        createLyric.returns(Promise.reject(new Error('DB Error')));
+        create.returns(Promise.reject(new Error('DB Error')));
         await lyricService.create(dummyLyric)
         .catch((error) => {
             expect(error).to.be.an('error');
