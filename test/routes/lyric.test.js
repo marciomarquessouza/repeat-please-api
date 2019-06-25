@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../../app.js');
 const sinon = require('sinon');
-const token = require('../../src/auth/token');
+const token = require('../../src/services/auth/token');
 const lyricService = require('../../src/services/lyric');
 const AppError = require('../../src/exceptions/AppException');
 
@@ -30,9 +30,21 @@ const dummyLyric2 = {
 };
 
 describe('GET /repeat-please/lyric/ping', () => {
+
+    let createLyric, verify;
+
+    beforeEach(() => {
+        verify = sinon.stub(token, 'verify');
+    });
+
+    afterEach(() => {
+        verify.restore();
+    })
     it('Should return with 200 - ok', (done) => {
+        verify.yields(null, { id: 'my_id' });
         request(app)
         .get('/repeat-please/lyric/ping')
+        .set('x-access-token', 'my-token')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/u)
         .expect(200, done);
@@ -73,13 +85,13 @@ describe('POST /repeat-please/lyric/', () => {
     });
 
     it('Should answer with 405 - Method Not Allowed', (done) => {
-        createLyric.rejects('Title is required');
+        createLyric.rejects(new AppError('Title is required', 405, 'error'));
         verify.yields(null, { id: 'my_id' });
 
         request(app)
         .post('/repeat-please/lyric')
         .send({
-            title: null
+            title: ""
         })
         .set('Accept', 'application/json')
         .set('x-access-token', 'my-token')
@@ -318,7 +330,7 @@ describe("PUT /repeat-please/lyric/:_id", () => {
         });
     });
 
-    it('Should answer a genereic server error', (done) => {
+    it('Should answer a generic server error', (done) => {
 
         dummyLyric.title = "new title";
         verify.yields(null, { id: 'my_id'});

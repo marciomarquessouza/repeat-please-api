@@ -1,20 +1,17 @@
-const auth = require('../../auth/auth');
-const Response = require('../../models/responses/Response');
-const ErrorResponse = require('../../models/responses/ErrorResponse');
+const authService = require('../../services/auth');
 
-module.exports.register = (req, res) => {
-    auth.register(
+module.exports.register = (req, res, next) => {
+    authService.register(
         req.body.email,
         req.body.name,
         req.body.password
         )
-        .then((token) => {
-            const response = new Response(res, 'Created', 201, true, token);
-            response.send();
+        .then(({ token, user }) => {
+            res.locals.token = token;
+            res.locals.body = user;
+            return next();
         })
-        .catch((error) => {
-            const code = error.code || 500;
-            const message = error.message || 'Internal error';
-            return new ErrorResponse(res, message, code).send();
+        .catch((err) => {
+            return next(err);
         });
 };

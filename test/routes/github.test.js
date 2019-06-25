@@ -7,7 +7,7 @@ const githubResponse = require('../helper/githubResponse.json');
 describe('GET repeat-please/github', () => {
     it('Should answer 200 - ok', (done) => {
         supertest(app)
-        .get('/repeat-please/github')
+        .get('/repeat-please/github/ping')
         .expect(200)
         .end((error) => {
             if (error) done(error);

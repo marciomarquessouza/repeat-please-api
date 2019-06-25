@@ -1,7 +1,7 @@
-const token = require('../auth/token');
-const User = require('../models/users/User');
+const token = require('./token');
+const User = require('../../models/users/User');
 
-module.exports = (email, password) => {
+const login = (email, password) => {
     return new Promise((resolve, reject) => {
         new User({ email })
         .findUserByEmail()
@@ -11,10 +11,16 @@ module.exports = (email, password) => {
             .then(() => user);
         })
         .then((user) => {
+            user.password = undefined;
             return token
             .create(user._id)
-            .then((userToken) => resolve(userToken));
+            .then((userToken) => resolve({
+                token: userToken,
+                user
+            }));
         })
         .catch((error) => reject(error));
     });
 };
+
+module.exports = { login };

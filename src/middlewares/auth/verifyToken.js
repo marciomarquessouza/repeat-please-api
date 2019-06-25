@@ -1,13 +1,14 @@
 const config = require('../../config/config');
-const token = require('../../auth/token');
-const Response = require('../../models/responses/Response');
+const token = require('../../services/auth/token');
+const AppError = require('../../exceptions/AppException');
 
 module.exports = (req, res, next) => {
 
     const reqToken = req.headers['x-access-token'];
 
     if (!reqToken) {
-        return new Response(res, 'Token was not found', 401).send();
+        const error = new AppError('Token was not found', 401, 'error');
+        return next(error);
     }
 
     const { secret } = config.token;
@@ -15,11 +16,16 @@ module.exports = (req, res, next) => {
     token.verify(reqToken, secret, (error, decoded) => {
 
         if (error) {
-            return new Response(res, 'Token was not validated', 401).send();
+            const err = new AppError(
+                `Token was not validated: ${error.message}`,
+                401,
+                'error'
+                );
+            return next(err);
         }
 
         req.userId = decoded.id;
 
-        next();
+        return next();
     });
 };

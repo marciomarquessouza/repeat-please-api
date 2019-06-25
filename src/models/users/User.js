@@ -73,7 +73,7 @@ UserSchema.methods.createUser = function createUser() {
     return new Promise((resolve, reject) => {
         this.model('User').create({
             email: this.email,
-            name: this.email,
+            name: this.name,
             password: this.password
         }, (error, user) => {
             if (error) {
