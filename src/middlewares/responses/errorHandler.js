@@ -10,7 +10,7 @@ module.exports.errorHandler = (err, req, res, next) => {
     res.status(status)
     .json({
         auth: false,
-        message: message,
+        message,
         token: null,
         body: null
     })
