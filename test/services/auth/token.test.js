@@ -1,4 +1,4 @@
-const token = require('../../src/auth/token');
+const token = require('../../../src/services/auth/token');
 const sinon = require('sinon')
 const { expect } = require('chai');
 const jwt = require('jsonwebtoken');

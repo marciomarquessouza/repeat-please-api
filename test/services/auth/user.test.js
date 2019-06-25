@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const User = require('../../src/models/users/User');
-const authUser = require('../../src/auth/user');
+const User = require('../../../src/models/users/User');
+const authService = require('../../../src/services/auth');
 
 describe('auth/user.js', () => {
 
@@ -25,7 +25,7 @@ describe('auth/user.js', () => {
 
         find.yields(null, dummyUser);
 
-        authUser(dummyUser._id)
+        authService.user(dummyUser._id)
         .then((user) => {
             expect(user).to.be.an('object');
             expect(user).to.deep.equal(dummyUser);
@@ -40,7 +40,7 @@ describe('auth/user.js', () => {
 
         find.yields(null, dummyUser);
 
-        authUser(dummyUser._id)
+        authService.user(dummyUser._id)
         .then((user) => {
             expect(user).to.be.an('object');
             expect(user.password).to.be.undefined;
@@ -54,7 +54,21 @@ describe('auth/user.js', () => {
     it('Should return a database error', async () => {
         find.yields(new Error('Sinon Error'));
 
-        await authUser(dummyUser._id)
+        await authService.user(dummyUser._id)
+        .then(() => {
+            throw new Error("Error wasn't reached");
+        })
+        .catch((error) => {
+            expect(error).to.be.an('error')
+            expect(error.code).to.equal(500);
+            expect(error.message).to.equal('Database Error');
+        });
+    });
+
+    it('Should return a default error', async () => {
+        find.yields(new Error(''));
+
+        await authService.user(dummyUser._id)
         .then(() => {
             throw new Error("Error wasn't reached");
         })
@@ -68,7 +82,7 @@ describe('auth/user.js', () => {
     it('Should return User Not Found', async () => {
         find.yields(null, null);
 
-        await authUser(dummyUser._id)
+        await authService.user(dummyUser._id)
         .then(() => {
             throw new Error("Error wasn't reached");
         })
