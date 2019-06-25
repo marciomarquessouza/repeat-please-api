@@ -7,7 +7,7 @@ const githubResponse = require('../helper/githubResponse.json');
 describe('GET repeat-please/github', () => {
     it('Should answer 200 - ok', (done) => {
         supertest(app)
-        .get('/repeat-please/github')
+        .get('/repeat-please/github/ping')
         .expect(200)
         .end((error) => {
             if (error) done(error);
@@ -139,7 +139,7 @@ describe('GET repeat-please/github/repo/:user/:name', () => {
         });
     });
 
-    it("Should answer 502 - Internal Server Error (default) ", (done) => {
+    it("Should answer 504 - Internal Server Error (default) ", (done) => {
         const githubError = new Error('Internal Server Error');
         const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 504 }, JSON.stringify({ message: 'Internal Server Error' }));
 
@@ -147,7 +147,7 @@ describe('GET repeat-please/github/repo/:user/:name', () => {
         const pass = 'repeat-please';
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(502)
+        .expect(504)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);

@@ -23,7 +23,23 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: true,
+        required: true,
+        trim: true
+    },
+    coutry: {
+        type: String,
+        required: false,
+        trim: true,
+        uppercase: true,
+        validate(code) {
+            if (!validator.isISO31661Alpha2(code)) {
+                throw new DBError('Invalid country code', 500, 'error');
+            }
+        }
+    },
+    link: {
+        type: String,
+        required: false,
         trim: true
     }
 });
@@ -57,7 +73,7 @@ UserSchema.methods.createUser = function createUser() {
     return new Promise((resolve, reject) => {
         this.model('User').create({
             email: this.email,
-            name: this.email,
+            name: this.name,
             password: this.password
         }, (error, user) => {
             if (error) {

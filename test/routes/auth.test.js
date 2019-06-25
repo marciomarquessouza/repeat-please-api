@@ -3,8 +3,8 @@ const app = require('../../app.js');
 const sinon = require('sinon');
 const AppError = require('../../src/exceptions/AppException');
 const AuthError = require('../../src/exceptions/AuthException');
-const auth = require('../../src/auth/auth');
-const token = require('../../src/auth/token')
+const auth = require('../../src/services/auth');
+const token = require('../../src/services/auth/token')
 
 const dummyUser = {
     _id: 'dummy_id',
@@ -14,10 +14,23 @@ const dummyUser = {
 };
 
 describe('GET /repeat-please/auth', () => {
+
+    let verify;
+
+    beforeEach(() => {
+        verify = sinon.stub(token, 'verify');
+    });
+
+    afterEach(() => {
+        verify.restore();
+    })
     it('Should return with 200 - ok', (done) => {
+        verify.yields(null, { id: 'my_id' });
+
         request(app)
-        .get('/repeat-please/auth')
+        .get('/repeat-please/auth/ping')
         .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
         .expect('Content-Type', /json/u)
         .expect(200, done);
     });

@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const githubService = require('../../../src/services/github/githubService');
+const githubService = require('../../../src/services/github');
 const github = require('../../../src/integrations/github/githubIntegration')
 
 describe('services/github/githubService', () => {
@@ -18,7 +18,7 @@ describe('services/github/githubService', () => {
 
     it('Should return the github repository response', (done) => {
         repo.returns(Promise.resolve({ name: 'repeat-please'}));
-        githubService.repository(user, repoName)
+        githubService.fetch(user, repoName)
         .then((repoResponse) => {
             expect(repoResponse).to.deep.equal({ name: 'repeat-please'});
             done();
@@ -27,13 +27,25 @@ describe('services/github/githubService', () => {
 
     it('Should return a error from github', async () => {
         repo.returns(Promise.reject(new Error('Github Error')));
-        await githubService.repository(user, repoName)
+        await githubService.fetch(user, repoName)
         .then(() => {
             throw new Error('Erro was not generated');
         })
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Github Error');
+        });
+    });
+
+    it('Should return a default error', async () => {
+        repo.returns(Promise.reject(new Error('')));
+        await githubService.fetch(user, repoName)
+        .then(() => {
+            throw new Error('Erro was not generated');
+        })
+        .catch((error) => {
+            expect(error).to.be.an('error');
+            expect(error.message).to.equal('Internal Server error');
         });
     })
 });

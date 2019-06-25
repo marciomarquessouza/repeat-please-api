@@ -1,9 +1,9 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const User = require('../../src/models/users/User');
-const register = require('../../src/auth/register');
-const token = require('../../src/auth/token');
-const AuthError = require('../../src/exceptions/AuthException');
+const User = require('../../../src/models/users/User');
+const authService = require('../../../src/services/auth');
+const token = require('../../../src/services/auth/token');
+const AuthError = require('../../../src/exceptions/AuthException');
 
 describe('auth/register.js', () => {
     let createUser, hash, createToken;
@@ -31,9 +31,10 @@ describe('auth/register.js', () => {
         hash.returns(Promise.resolve('secret'));
         createToken.returns(Promise.resolve('my-token'));
 
-        register(dummyUser.email, dummyUser.name, dummyUser.password)
-        .then((token) => {
+        authService.register(dummyUser.email, dummyUser.name, dummyUser.password)
+        .then(({token, user}) => {
             expect(token).to.equal('my-token');
+            expect(user).to.deep.equal(dummyUser);
             done();
         });
     });
@@ -43,7 +44,7 @@ describe('auth/register.js', () => {
         hash.returns(Promise.reject(new AuthError('Token error - hash', 500)));
         createToken.returns(Promise.resolve('my-token'));
 
-        await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        await authService.register(dummyUser.name, dummyUser.name, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })
@@ -60,7 +61,7 @@ describe('auth/register.js', () => {
         hash.returns(Promise.resolve('secret'));
         createToken.returns(Promise.resolve('my-token'));
 
-        await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        await authService.register(dummyUser.name, dummyUser.name, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })
@@ -76,7 +77,7 @@ describe('auth/register.js', () => {
         hash.returns(Promise.resolve('secret'));
         createToken.returns(Promise.reject(new AuthError('Token creation error', 500)));
 
-        await register(dummyUser.name, dummyUser.name, dummyUser.password)
+        await authService.register(dummyUser.name, dummyUser.name, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })

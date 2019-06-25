@@ -1,13 +1,15 @@
-const Response = require('../../models/responses/Response');
+const AppError = require('../../exceptions/AppException');
 
 module.exports = (req, res, next) => {
     if (!req.body.email) {
-        return new Response(res, 'Email is required', 400).send();
+        const error = new AppError('Email is required', 400, 'error');
+        return next(error);
     }
 
     if (!req.body.password) {
-        return new Response(res, 'Password is required', 400).send();
+        const error = new AppError('Password is required', 400, 'error');
+        return next(error);
     }
 
-    next();
+    return next();
 };

@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const githubController = require('../controllers/githubControllers');
-const Response = require('../models/responses/Response');
+const githubController = require('../controllers/github');
+const response = require('../middlewares/responses');
 
-router.get('/', (req, res) => new Response(res, 'Github Repo', 200).send());
-router.get('/repo/:user/:name', githubController.repository);
+router.get('/ping', response.get);
+router.get('/repo/:user/:name', githubController.repository, response.fetch);
 
 module.exports = router;

@@ -1,11 +1,11 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
-const User = require('../../src/models/users/User');
-const login = require('../../src/auth/login');
-const token = require('../../src/auth/token');
-const AuthError = require('../../src/exceptions/AuthException');
+const User = require('../../../src/models/users/User');
+const token = require('../../../src/services/auth/token');
+const authService = require('../../../src/services/auth');
+const AuthError = require('../../../src/exceptions/AuthException');
 
-describe('auth/login.js', () => {
+describe('services/auth/login.js', () => {
 
     let find, checkPass, create;
     const dummyUser = {
@@ -32,8 +32,10 @@ describe('auth/login.js', () => {
         checkPass.returns(Promise.resolve(true));
         create.returns(Promise.resolve('my-token'));
 
-        login(dummyUser.email, dummyUser.password).then((token) => {
+        authService.login(dummyUser.email, dummyUser.password)
+        .then(({ token, user }) => {
             expect(token).to.equal('my-token');
+            expect(user).to.deep.equal(dummyUser);
             done();
         })
         .catch((error) => {
@@ -46,7 +48,7 @@ describe('auth/login.js', () => {
         checkPass.returns(Promise.resolve(true));
         create.returns(Promise.resolve('my-token'));
 
-        await login(dummyUser.email, dummyUser.password)
+        await authService.login(dummyUser.email, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })
@@ -62,7 +64,7 @@ describe('auth/login.js', () => {
         checkPass.returns(Promise.resolve(true));
         create.returns(Promise.resolve('my-token'));
 
-        await login(dummyUser.email, dummyUser.password)
+        await authService.login(dummyUser.email, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })
@@ -78,7 +80,7 @@ describe('auth/login.js', () => {
         checkPass.returns(Promise.reject(new AuthError('Unauthorized', 403)));
         create.returns(Promise.resolve('my-token'));
 
-        await login(dummyUser.email, dummyUser.password)
+        await authService.login(dummyUser.email, dummyUser.password)
         .then(() => {
             throw new Error('Erro was not generated');
         })
@@ -94,7 +96,7 @@ describe('auth/login.js', () => {
         checkPass.returns(Promise.resolve(true));
         create.returns(Promise.reject(new AuthError('Token creation error', 500)));
 
-        await login(dummyUser.email, dummyUser.password)
+        await authService.login(dummyUser.email, dummyUser.password)
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Token creation error');

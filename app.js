@@ -2,7 +2,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const logger = require('./src/config/logger');
-const Response = require('./src/models/responses/Response');
+const response = require('./src/middlewares/responses');
 
 app.use(require('morgan')('combined', { 'stream': logger.stream }));
 app.use(express.json());
@@ -11,10 +11,12 @@ app.use(cookieParser());
 
 app.use('/repeat-please', require('./src/routes/index'));
 
-// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const response = new Response(res, 'Not found', 404);
-  response.send();
+  const error = new Error('Not Found');
+  error.code = 404;
+  next(error);
 });
+
+app.use(response.errorHandler);
 
 module.exports = app;
