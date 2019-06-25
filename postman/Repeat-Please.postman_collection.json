@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "77c374d7-048a-4aa6-b508-f1fddccf8f05",
+		"name": "Repeat-Please",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "bulgaria@email.com",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Bulgaria",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "secret",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "03c8328c-af49-4ed9-aea3-bf7bba53aa89",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "marcio.souza@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "secret",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/auth/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lyric",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Luzes\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/lyric/list/query",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lyric",
+								"list",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/lyric/5cedb1362d27a634daaba2f7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lyric",
+								"5cedb1362d27a634daaba2f7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"The man who I wa\",\n\t\"lines\": [{\n\t\t\"line\": \"Frase 1\",\n\t\t\"start\": 0,\n\t\t\"end\": 2,\n\t\t\"dureation\": 2\n\t},\n\t{\n\t\t\"line\": \"Frase 2\",\n\t\t\"start\": 3,\n\t\t\"end\": 5,\n\t\t\"dureation\": 2\n\t},\n\t{\n\t\t\"line\": \"Frase 3\",\n\t\t\"start\": 5,\n\t\t\"end\": 7,\n\t\t\"dureation\": 2\n\t}]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/lyric/5d0172ddec7365338e5ce52c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lyric",
+								"5d0172ddec7365338e5ce52c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"\",\n\t\"lines\": [{\n\t\t\"line\": \"Frase 1\",\n\t\t\"start\": 0,\n\t\t\"end\": 2,\n\t\t\"dureation\": 2\n\t},\n\t{\n\t\t\"line\": \"Frase 2\",\n\t\t\"start\": 3,\n\t\t\"end\": 5,\n\t\t\"dureation\": 2\n\t}]\n}\n"
+						},
+						"url": {
+							"raw": "{{url}}/lyric",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"lyric"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "github",
+			"item": [
+				{
+					"name": "Github Repositorio",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/github/repo/{{git_user}}/{{git_repos}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"github",
+								"repo",
+								"{{git_user}}",
+								"{{git_repos}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Github",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/github/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"github",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}",
+					"host": [
+						"{{url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
