@@ -31,7 +31,7 @@ const dummyLyric2 = {
 
 describe('GET /repeat-please/lyric/ping', () => {
 
-    let createLyric, verify;
+    let verify;
 
     beforeEach(() => {
         verify = sinon.stub(token, 'verify');
@@ -278,7 +278,7 @@ describe("PUT /repeat-please/lyric/:_id", () => {
         verify.restore();
     });
 
-    it('Should answer 200', (done) => {
+    it('Should answer 202', (done) => {
         dummyLyric.title = "new title";
         verify.yields(null, { id: 'my_id'});
         update.resolves(dummyLyric);
@@ -288,7 +288,7 @@ describe("PUT /repeat-please/lyric/:_id", () => {
         .set('Accept', 'application/json')
         .set('x-access-token', 'my-token')
         .send(dummyLyric)
-        .expect(200)
+        .expect(202)
         .end((err) => {
             if (err) return done(err);
             done();
@@ -346,5 +346,152 @@ describe("PUT /repeat-please/lyric/:_id", () => {
             if (err) return done(err);
             done();
         });
+    });
+});
+
+describe('DELETE /repeat-please/lyric/:_id', () => {
+    let removeByID, verify;
+
+    beforeEach(() => {
+        verify = sinon.stub(token, 'verify');
+        removeByID = sinon.stub(lyricService, 'removeByID');
+    });
+
+    afterEach(() => {
+        removeByID.restore();
+        verify.restore();
+    });
+
+    it('Should return 202 - Removed', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeByID.returns(Promise.resolve({ deletedCount: 1 }));
+
+        request(app)
+        .delete('/repeat-please/lyric/5d053e6f93022722806f51ef')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .expect(202)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+
+    it('Should return 404 - Not Found', (done) => {
+        verify.yields(null, { id: 'my_id'});
+
+        request(app)
+        .delete('/repeat-please/lyric/')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .send(dummyLyric)
+        .expect(404)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+
+    it('Should return 404 - Lyric Not Found', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeByID.rejects(new AppError('No Results', 404, 'error'));
+
+        request(app)
+        .delete('/repeat-please/lyric/5d053e6f93022722806f51ef')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .expect(404)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+
+    it('Should return 500 - Default error', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeByID.rejects(new Error(''));
+
+        request(app)
+        .delete('/repeat-please/lyric/5d053e6f93022722806f51ef')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .expect(500)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+});
+
+describe('POST /repeat-please/lyric/remove/list', () => {
+
+    let verify, removeList;
+
+    beforeEach(() => {
+        verify = sinon.stub(token, 'verify');
+        removeList = sinon.stub(lyricService, 'removeList');
+    });
+
+    afterEach(() => {
+        verify.restore();
+        removeList.restore();
+    });
+    it('Should return 202 - Removed', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeList.returns(Promise.resolve({ deletedCount: 2 }));
+        const body = { 
+            ids: [
+                "5cf1ae0133cb537b1812f36a",
+                "5cf2c1fd18e6db2542b58e76",
+                "5cf2c34a4d4a7a270fb1041d"
+            ]
+        };
+
+        request(app)
+        .post('/repeat-please/lyric/remove/list')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .send(body)
+        .expect(202)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+
+    it('Should return 400 - Removed', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeList.rejects(
+            new AppError('Body is required', 400, 'error')
+        );
+        const body = '';
+
+        request(app)
+        .post('/repeat-please/lyric/remove/list')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .send(body)
+        .expect(400)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
+    });
+
+    it('Should return 500 - Default error', (done) => {
+        verify.yields(null, { id: 'my_id'});
+        removeList.rejects(new Error(''));
+        const body = '';
+
+        request(app)
+        .post('/repeat-please/lyric/remove/list')
+        .set('Accept', 'application/json')
+        .set('x-access-token', 'my-token')
+        .send(body)
+        .expect(500)
+        .end((err) => {
+            if (err) return done(err);
+            done();
+        });        
     });
 });

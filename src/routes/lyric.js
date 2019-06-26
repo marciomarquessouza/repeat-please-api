@@ -15,7 +15,8 @@ router.get('/:id', lyricController.fetch, response.fetch);
 router.post('/list/:query', lyricController.fetch, response.fetch);
 router.post('/', lyricController.create, response.create);
 router.put('/:id', lyricController.update, response.update);
-
+router.delete('/:id', lyricController.remove, response.remove);
+router.post('/remove/:list', lyricController.remove, response.remove);
 
 router.use(response.errorHandler);
 

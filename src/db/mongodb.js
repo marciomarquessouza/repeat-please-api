@@ -14,7 +14,8 @@ const connection = (url, server, repeatLocal = false) => {
     return new Promise((resolve, reject) => {
         mongoose.connect(url, {
             useNewUrlParser: true,
-            useCreateIndex: true
+            useCreateIndex: true,
+            useFindAndModify: false
         }, (error) => {
             if (error && repeatLocal) {
                 const mongoLocalURL = mongoURL(

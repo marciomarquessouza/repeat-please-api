@@ -1,7 +1,7 @@
 const AppError = require('../../exceptions/AppException');
 const { Lyric } = require('../../models/lyrics/Lyric');
 
-const update = async (query, newLyric) => {
+const update = async (query, newLyric, returnUpdated = true) => {
     try {
         if (!query) {
             throw new AppError('ID is required', 400, 'error');
@@ -11,7 +11,8 @@ const update = async (query, newLyric) => {
         }
         const lyric = await Lyric.findOneAndUpdate(
             query,
-            { $set: newLyric }
+            { $set: newLyric },
+            { new: returnUpdated }
         );
         if (!lyric) {
             throw new AppError('Lyric not Found', 404, 'error');
