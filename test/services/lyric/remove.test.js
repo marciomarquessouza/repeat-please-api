@@ -1,7 +1,6 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const lyricService = require('../../../src/services/lyric');
-const AppError = require('../../../src/exceptions/AppException');
 const { Lyric } = require('../../../src/models/lyrics/Lyric');
 
 const id1 = 'myID01';

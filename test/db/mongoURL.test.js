@@ -1,7 +1,7 @@
 const mongoURL = require('../../src/db/mongoURL');
 const { expect } = require('chai');
 
-describe('mongoURL.js - mongoDB Cloud', () => {
+describe('db/mongoURL.js - mongoDB Cloud', () => {
     const cloudDBParameters = {
         user: 'dummyUser',
         pass: 'dummyPass',
@@ -21,7 +21,7 @@ describe('mongoURL.js - mongoDB Cloud', () => {
     });
 });
 
-describe('mongoURL.js - localhost', () => {
+describe('db/mongoURL.js - localhost', () => {
     const localDBParameters = {
         user: '',
         pass: '',

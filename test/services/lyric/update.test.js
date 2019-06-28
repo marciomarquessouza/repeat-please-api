@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const lyricService = require('../../../src/services/lyric');
 const { Lyric } = require('../../../src/models/lyrics/Lyric');
-const AppError = require('../../../src/exceptions/AppException');
 
 const dummyLyric = {
     title: 'Dummy Title',
@@ -50,7 +49,7 @@ describe('services/lyric/update', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.be.equal('Lyric not Found');
-            expect(error.code).to.be.equal(404);
+            expect(error.status).to.be.equal(404);
         });
     });
 
@@ -59,7 +58,7 @@ describe('services/lyric/update', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.be.equal('ID is required');
-            expect(error.code).to.be.equal(400);
+            expect(error.status).to.be.equal(400);
         });
     });
 
@@ -68,7 +67,7 @@ describe('services/lyric/update', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.be.equal('New Lyric is required');
-            expect(error.code).to.be.equal(400);
+            expect(error.status).to.be.equal(400);
         });
     });
 });

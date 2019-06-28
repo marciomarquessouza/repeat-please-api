@@ -44,7 +44,7 @@ describe('auth/token', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(500);
+            expect(error.status).to.be.equal(500);
         })
     });
 
@@ -60,7 +60,7 @@ describe('auth/token', () => {
         verify.yields(new Error('Invalid Token'));
         await token.verify('my-token', null, (error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(401);
+            expect(error.status).to.be.equal(401);
         });
     });
 
@@ -81,7 +81,7 @@ describe('auth/token', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(500);
+            expect(error.status).to.be.equal(500);
         })
     });
 
@@ -89,11 +89,11 @@ describe('auth/token', () => {
         compare.yields(null, false);
         await token.checkPass(dummyUser.password, dummyUser.password)
         .then(() => {
-            throw new Error('Erro was not generated');
+            throw new Error('Error was not generated');
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(401);
+            expect(error.status).to.be.equal(401);
         })
     });
 
@@ -114,7 +114,7 @@ describe('auth/token', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(500);
+            expect(error.status).to.be.equal(500);
         })
     })
 });

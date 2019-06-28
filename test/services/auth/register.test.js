@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const User = require('../../../src/models/users/User');
 const authService = require('../../../src/services/auth');
 const token = require('../../../src/services/auth/token');
-const AuthError = require('../../../src/exceptions/AuthException');
+const httpErrors = require('http-errors');
 
 describe('auth/register.js', () => {
     let createUser, hash, createToken;
@@ -41,7 +41,7 @@ describe('auth/register.js', () => {
 
     it('Should return a Token-hash error', async () => {
         createUser.yields(null, dummyUser);
-        hash.returns(Promise.reject(new AuthError('Token error - hash', 500)));
+        hash.returns(Promise.reject(httpErrors(500, 'Token error - hash')));
         createToken.returns(Promise.resolve('my-token'));
 
         await authService.register(dummyUser.name, dummyUser.name, dummyUser.password)
@@ -51,7 +51,7 @@ describe('auth/register.js', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Token error - hash');
-            expect(error.code).to.equal(500);
+            expect(error.status).to.equal(500);
         });
     });
 
@@ -68,14 +68,14 @@ describe('auth/register.js', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Database error');
-            expect(error.code).to.equal(500);
+            expect(error.status).to.equal(500);
         });
     });
 
     it('Should return a Token-jwt error', async () => {
         createUser.yields(null, dummyUser);
         hash.returns(Promise.resolve('secret'));
-        createToken.returns(Promise.reject(new AuthError('Token creation error', 500)));
+        createToken.returns(Promise.reject(httpErrors(500, 'Token creation error')));
 
         await authService.register(dummyUser.name, dummyUser.name, dummyUser.password)
         .then(() => {
@@ -84,7 +84,7 @@ describe('auth/register.js', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Token creation error');
-            expect(error.code).to.equal(500);
+            expect(error.status).to.equal(500);
         });
     });
 });

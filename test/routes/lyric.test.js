@@ -3,7 +3,7 @@ const app = require('../../app.js');
 const sinon = require('sinon');
 const token = require('../../src/services/auth/token');
 const lyricService = require('../../src/services/lyric');
-const AppError = require('../../src/exceptions/AppException');
+const httpErrors = require('http-errors');
 
 const dummyLyric = {
     title: 'Dummy Title',
@@ -85,7 +85,7 @@ describe('POST /repeat-please/lyric/', () => {
     });
 
     it('Should answer with 405 - Method Not Allowed', (done) => {
-        createLyric.rejects(new AppError('Title is required', 405, 'error'));
+        createLyric.rejects(httpErrors(405, 'Title is required'));
         verify.yields(null, { id: 'my_id' });
 
         request(app)
@@ -136,7 +136,7 @@ describe("GET /repeat-please/lyric/:id", () => {
 
     it("Should answer 404 when the lyric doesn't exist", (done) => {
         verify.yields(null, { id: 'my_id'});
-        fetchByID.rejects(new AppError('Lyric not Found', 404, 'error'));
+        fetchByID.rejects(httpErrors(404, 'Lyric not Found'));
 
         request(app)
         .get('/repeat-please/lyric/5cf2c9ae5586fd2f0a58ba30')
@@ -151,7 +151,7 @@ describe("GET /repeat-please/lyric/:id", () => {
 
     it("Should answer 502 when the lyric id's invalid", (done) => {
         verify.yields(null, { id: 'my_id'});
-        fetchByID.rejects(new AppError('Internal Error', 502, 'error'));
+        fetchByID.rejects(httpErrors(502, 'Internal Error'));
 
         request(app)
         .get('/repeat-please/lyric/5cf2c9ae')
@@ -231,7 +231,7 @@ describe("POST /repeat-please/lyric/list/:query", () => {
     it('Should answer 404 when any lyric was not found', (done) => {
 
         verify.yields(null, { id: 'my_id'});
-        fetch.rejects(new AppError('No Results', 404, 'error'));
+        fetch.rejects(httpErrors(404, 'No Results'));
 
         request(app)
         .post('/repeat-please/lyric/list/query')
@@ -299,7 +299,7 @@ describe("PUT /repeat-please/lyric/:_id", () => {
 
         dummyLyric.title = "new title";
         verify.yields(null, { id: 'my_id'});
-        update.rejects(new AppError('New Lyric is required', 400, 'error'));
+        update.rejects(httpErrors(400, 'New Lyric is required'));
 
         request(app)
         .put('/repeat-please/lyric/5d053e6f93022722806f51ef')
@@ -316,7 +316,7 @@ describe("PUT /repeat-please/lyric/:_id", () => {
 
         dummyLyric.title = "new title";
         verify.yields(null, { id: 'my_id'});
-        update.rejects(new AppError('No Results', 404, 'error'));
+        update.rejects(httpErrors(404, 'No Results'));
 
         request(app)
         .put('/repeat-please/lyric/5d053e6f93022722806f5cure')
@@ -394,7 +394,7 @@ describe('DELETE /repeat-please/lyric/:_id', () => {
 
     it('Should return 404 - Lyric Not Found', (done) => {
         verify.yields(null, { id: 'my_id'});
-        removeByID.rejects(new AppError('No Results', 404, 'error'));
+        removeByID.rejects(httpErrors(404, 'No Results'));
 
         request(app)
         .delete('/repeat-please/lyric/5d053e6f93022722806f51ef')
@@ -462,7 +462,7 @@ describe('POST /repeat-please/lyric/remove/list', () => {
     it('Should return 400 - Removed', (done) => {
         verify.yields(null, { id: 'my_id'});
         removeList.rejects(
-            new AppError('Body is required', 400, 'error')
+            httpErrors(400, 'Body is required')
         );
         const body = '';
 

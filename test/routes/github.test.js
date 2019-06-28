@@ -58,16 +58,15 @@ describe('GET /repeat-please/github/repo/:user/:name', () => {
         });
     });
 
-    it("Should answer 404 - repository does not exist", (done) => {
+    it("Should answer repository does not exist", (done) => {
         const githubError = new Error('Not found');
-        githubError.code = '404';
-        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 404 }, JSON.stringify({ message: 'Not found' }));
+        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 502 }, JSON.stringify({ message: 'Not found' }));
 
         const user = 'marciomarquessouza';
         const pass = 'repeat-please';
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(404)
+        .expect(502)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);
@@ -75,15 +74,15 @@ describe('GET /repeat-please/github/repo/:user/:name', () => {
         });
     });
 
-    it("Should answer 403 - forbidden", (done) => {
+    it("Should answer forbidden", (done) => {
         const githubError = new Error('Forbidden');
-        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 403 }, JSON.stringify({ message: 'forbidden' }));
+        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 502 }, JSON.stringify({ message: 'forbidden' }));
 
         const user = 'marciomarquessouza';
         const pass = 'repeat-please';
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(403)
+        .expect(502)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);
@@ -91,15 +90,15 @@ describe('GET /repeat-please/github/repo/:user/:name', () => {
         });
     });
 
-    it("Should answer 401 - unauthorized", (done) => {
+    it("Should answer unauthorized", (done) => {
         const githubError = new Error('unauthorized');
-        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 401 }, JSON.stringify({ message: 'unauthorized' }));
+        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 502 }, JSON.stringify({ message: 'unauthorized' }));
 
         const user = 'marciomarquessouza';
         const pass = 'repeat-please';
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(401)
+        .expect(502)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);
@@ -107,15 +106,15 @@ describe('GET /repeat-please/github/repo/:user/:name', () => {
         });
     });
 
-    it("Should answer 500 - Internal Server Error", (done) => {
+    it("Should answer Internal Server Error", (done) => {
         const githubError = new Error('Internal Server Error');
-        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 500 }, JSON.stringify({ message: 'Internal Server Error' }));
+        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 502 }, JSON.stringify({ message: 'Internal Server Error' }));
 
         const user = 'marciomarquessouza';
         const pass = 'repeat-please';
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(500)
+        .expect(502)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);
@@ -132,22 +131,6 @@ describe('GET /repeat-please/github/repo/:user/:name', () => {
         supertest(app)
         .get(`/repeat-please/github/repo/${user}/${pass}`)
         .expect(502)
-        .end((error) => {
-            requestGet.restore();
-            if (error) return done(error);
-            done();
-        });
-    });
-
-    it("Should answer 504 - Internal Server Error (default) ", (done) => {
-        const githubError = new Error('Internal Server Error');
-        const requestGet = sinon.stub(request, 'get').yields(githubError, { statusCode: 504 }, JSON.stringify({ message: 'Internal Server Error' }));
-
-        const user = 'marciomarquessouza';
-        const pass = 'repeat-please';
-        supertest(app)
-        .get(`/repeat-please/github/repo/${user}/${pass}`)
-        .expect(504)
         .end((error) => {
             requestGet.restore();
             if (error) return done(error);

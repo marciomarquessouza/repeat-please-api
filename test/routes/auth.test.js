@@ -1,8 +1,7 @@
 const request = require('supertest');
 const app = require('../../app.js');
 const sinon = require('sinon');
-const AppError = require('../../src/exceptions/AppException');
-const AuthError = require('../../src/exceptions/AuthException');
+const httpError = require('http-errors');
 const auth = require('../../src/services/auth');
 const token = require('../../src/services/auth/token')
 
@@ -65,7 +64,7 @@ describe('POST /repeat-please/auth/register', () => {
     });
 
     it('Should answer 401 - unauthorized', (done) => {
-        register.rejects(new AuthError('Unauthorized', 401));
+        register.rejects(httpError(401, 'Unauthorized'));
 
         request(app)
         .post('/repeat-please/auth/register')
@@ -80,7 +79,7 @@ describe('POST /repeat-please/auth/register', () => {
     });
 
     it('Should answer with 500 - Internal Server Error', (done) => {
-        register.rejects(new AppError('Internal Server Error', 500));
+        register.rejects(httpError(500, 'Internal Server Error'));
 
         request(app)
         .post('/repeat-please/auth/register')
@@ -169,7 +168,7 @@ describe('POST /repeat-please/auth/login', () => {
 
     it('Should answer wiht 401 - Unauthorized', (done) => {
 
-        login.rejects(new AuthError('Unauthorized', 401));
+        login.rejects(httpError(401, 'Unauthorized'));
 
         request(app)
         .post('/repeat-please/auth/login')
@@ -188,7 +187,7 @@ describe('POST /repeat-please/auth/login', () => {
 
     it('Should answer wiht 404 - Not Found', (done) => {
 
-        login.rejects(new AuthError('Not Found', 404));
+        login.rejects(httpError(404, 'Not Found'));
 
         request(app)
         .post('/repeat-please/auth/login')
@@ -207,7 +206,7 @@ describe('POST /repeat-please/auth/login', () => {
 
     it('Should answer wiht 500 - Internal Server Error', (done) => {
 
-        login.rejects(new AuthError('Internal Server Error', 500));
+        login.rejects(httpError(500, 'Internal Server Error'));
 
         request(app)
         .post('/repeat-please/auth/login')
@@ -289,7 +288,7 @@ describe('GET /repeat-please/auth/user', () => {
     });
 
     it('Should answer with 401 - tokes was not validated', (done) => {
-        verify.yields(new Error('token was not validated'));
+        verify.yields(httpError(401, 'token was not validated'));
 
         request(app)
         .get('/repeat-please/auth/user')
@@ -299,7 +298,7 @@ describe('GET /repeat-please/auth/user', () => {
 
     it('Should answer with 404 - user not found', (done) => {
 
-        user.rejects(new AuthError('Not Found', 404));
+        user.rejects(httpError(404, 'Not Found'));
         verify.yields(null, { id: 'my_id' });
 
         request(app)

@@ -1,6 +1,6 @@
 const User = require('../../models/users/User');
-const AppError = require('../../exceptions/AppException');
-const http = require('../../helpers/httpCheck');
+const httpErrors = require('http-errors');
+const log = require('../../config/logger');
 
 const user = (userId) => {
     return new Promise((resolve, reject) => {
@@ -11,11 +11,8 @@ const user = (userId) => {
             return resolve(fetchedUser);
         })
         .catch((err) => {
-            const appError = new AppError(
-                err.message,
-                http.check(err.code, 500),
-                'error'
-            );
+            const appError = httpErrors(err.status, err.message);
+            log.build(log.lv.ERROR, err);
             return reject(appError);
         });
     });

@@ -38,7 +38,7 @@ describe('services/github/githubService', () => {
     });
 
     it('Should return a default error', async () => {
-        repo.returns(Promise.reject(new Error('')));
+        repo.returns(Promise.reject(new Error('Internal Server error')));
         await githubService.fetch(user, repoName)
         .then(() => {
             throw new Error('Erro was not generated');

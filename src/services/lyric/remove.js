@@ -1,26 +1,20 @@
-const AppError = require('../../exceptions/AppException');
 const { Lyric } = require('../../models/lyrics/Lyric');
-const http = require('../../helpers/httpCheck');
+const httpErrors = require('http-errors');
 
 const removeByID = async (_id) => {
     try {
         if (!_id) {
-            throw new AppError('ID is required', 400, 'error');
+            throw httpErrors(400, 'ID is required');
         }
 
         const response = await Lyric.deleteOne({ _id });
 
         if (response.deletedCount < 1) {
-            throw new AppError('Lyric not found', 404, 'error');
+            throw httpErrors(404, 'Lyric not found');
         }
         return response;
     } catch (err) {
-        const appError = new AppError(
-            err.message,
-            http.check(err.code, 500),
-            'error'
-        );
-        return appError;
+        throw httpErrors(err.status, err.message);
     }
 };
 
@@ -31,15 +25,10 @@ const removeList = async (ids) => {
             return response;
         }
 
-        throw new AppError('Body is required', 400, 'error');
+        throw httpErrors(400, 'Body is required');
 
     } catch (err) {
-        const appError = new AppError(
-            err.message,
-            http.check(err.code, 500),
-            'error'
-        );
-        return appError;
+        throw httpErrors(err.status, err.message);
     }
 };
 

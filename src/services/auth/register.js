@@ -1,7 +1,7 @@
 const token = require('./token');
 const User = require('../../models/users/User');
-const AppError = require('../../exceptions/AppException');
-const http = require('../../helpers/httpCheck');
+const httpErrors = require('http-errors');
+const log = require('../../config/logger');
 
 const register = (email, name, password) => {
 
@@ -26,12 +26,9 @@ const register = (email, name, password) => {
                 user
             }));
         })
-        .catch((error) => {
-            const appError = new AppError(
-                error.message,
-                http.check(error.code, 500),
-                'error'
-            );
+        .catch((err) => {
+            log.build(log.lv.ERROR, err);
+            const appError = httpErrors(err.status, err.message);
             return reject(appError);
         });
     });

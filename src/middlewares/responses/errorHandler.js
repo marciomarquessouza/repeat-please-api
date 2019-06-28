@@ -4,7 +4,7 @@ module.exports.errorHandler = (err, req, res, next) => {
         return next(err);
     }
 
-    const status = err.code || 500;
+    const status = err.status || 500;
     const message = err.message || 'Server Error';
 
     res.status(status)
