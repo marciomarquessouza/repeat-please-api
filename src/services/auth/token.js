@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../../config/config');
-const AuthError = require('../../exceptions/AuthException');
+const httpErrors = require('http-errors');
+const log = require('../../config/logger');
 
 module.exports = {
    create: (userId, expiresIn = config.token.expires) => {
@@ -15,18 +16,19 @@ module.exports = {
             if (token) {
                 return resolve(token);
             }
-
-            return reject(new AuthError('Token creation error', 500));
+            const appError = new Error('Token creation error');
+            log.build(log.lv.ERROR, appError);
+            return reject(httpErrors(500, appError.message));
         });
     },
-    verify: (token, secret = config.token.secret, callback) => {
+    verify: (token, secret = config.token.secret, cb) => {
 
         jwt.verify(token, secret, (error, decoded) => {
             if (error) {
-                return callback(new AuthError('Invalid Token', 401));
+                log.build(log.lv.ERROR, error);
+                return cb(httpErrors(401, `Invalid Token ${error.message}`));
             }
-
-            return callback(null, decoded);
+            return cb(null, decoded);
         });
     },
     checkPass: (userPass, comparePass) => {
@@ -34,11 +36,14 @@ module.exports = {
         return new Promise((resolve, reject) => {
             bcrypt.compare(userPass, comparePass, (error, res) => {
                 if (error) {
-                    return reject(new AuthError(error.message, 500));
+                    log.build(log.lv.ERROR, error);
+                    return reject(httpErrors(500, error.message));
                 }
 
                 if (!res) {
-                    return reject(new AuthError('Unauthorized', 401));
+                    const err = httpErrors(401, 'Unauthorized');
+                    log.build(log.lv.ERROR, err);
+                    return reject(err);
                 }
 
                 return resolve(res);
@@ -50,7 +55,8 @@ module.exports = {
         return new Promise((resolve, reject) => {
             bcrypt.hash(password, salt, (error, hashPass) => {
                 if (error) {
-                    return reject(new AuthError('Token error - hash', 500));
+                    log.build(log.lv.ERROR, error);
+                    return reject(httpErrors(500, error.message));
                 }
 
                 return resolve(hashPass);

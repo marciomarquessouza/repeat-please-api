@@ -53,17 +53,17 @@ describe('services/lyric/fetch', () => {
         await lyricService.fetchByID('lyricID')
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.message).to.equal('Lyric not Found');
-            expect(error.code).to.equal(404);
+            expect(error.message).to.equal('No Results');
+            expect(error.status).to.equal(404);
         })
     });
 
-    it("Should return a 502 error", async () => {
-        findOne.returns(Promise.reject(new Error('Bad Gateway')));
+    it("Should return a 500 error - Internal Error", async () => {
+        findOne.returns(Promise.reject(new Error('Internal Error')));
         await lyricService.fetchByID('lyricID')
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.equal(502);
+            expect(error.status).to.equal(500);
         })
     });
 
@@ -98,11 +98,11 @@ describe('services/lyric/fetch', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.be.equal('No Results');
-            expect(error.code).to.be.equal(404);
+            expect(error.status).to.be.equal(404);
         })
     });
 
-    it("Should return a bad gateway error (502)", async () => {
+    it("Should return 500 - Server Error", async () => {
         find.returns({
             skip: sinon.stub().returnsThis(),
             limit: sinon.stub().returns(Promise.reject(new Error('Server Error')))
@@ -110,7 +110,7 @@ describe('services/lyric/fetch', () => {
         await lyricService.fetch({})
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.code).to.be.equal(502);
+            expect(error.status).to.be.equal(500);
         })
     });
 });

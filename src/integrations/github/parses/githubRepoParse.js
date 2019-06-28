@@ -1,4 +1,4 @@
-module.exports = (body, callback) => {
+module.exports = (body) => {
     const githubParse = (content) => ({
         avatar: content.owner.avatar_url,
         id: content.id,
@@ -12,9 +12,8 @@ module.exports = (body, callback) => {
     });
 
     try {
-        return callback(null, githubParse(JSON.parse(body)));
+        return githubParse(JSON.parse(body));
     } catch (error) {
-        error.code = 502;
-        return callback(error);
+        return error;
     }
 };

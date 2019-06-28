@@ -19,7 +19,9 @@ const login = (email, password) => {
                 user
             }));
         })
-        .catch((error) => reject(error));
+        .catch((error) => {
+            reject(error);
+        });
     });
 };
 

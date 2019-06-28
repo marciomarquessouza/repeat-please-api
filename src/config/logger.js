@@ -1,6 +1,7 @@
 const { createLogger, format, transports } = require('winston');
 const fs = require('fs');
 require('winston-daily-rotate-file');
+const { lv } = require('../constants/log');
 
 const logDir = () => {
   const logDirPath = 'logs';
@@ -29,5 +30,13 @@ const logger = createLogger({
 logger.stream.write = function(message) {
     logger.info(message);
 };
+
+logger.build = function (level, err) {
+  this.message = err.message;
+  Error.captureStackTrace(this, err);
+  logger[level](this.stack);
+};
+
+logger.lv = lv;
 
 module.exports = logger;

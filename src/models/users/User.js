@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
-const DBError = require('../../exceptions/DatabaseException');
-const AppError = require('../../exceptions/AppException');
-const logger = require('../../config/logger');
+const httpErrors = require('http-errors');
+const log = require('../../config/logger');
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -14,12 +12,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        lowercase: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new DBError('Email is invalid', 500, 'error');
-            }
-        }
+        lowercase: true
     },
     password: {
         type: String,
@@ -30,12 +23,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: false,
         trim: true,
-        uppercase: true,
-        validate(code) {
-            if (!validator.isISO31661Alpha2(code)) {
-                throw new DBError('Invalid country code', 500, 'error');
-            }
-        }
+        uppercase: true
     },
     link: {
         type: String,
@@ -48,14 +36,14 @@ const findUser = (query, userQuery) => {
     return new Promise((resolve, reject) => {
         userQuery.findOne(query, (error, user) => {
             if (error) {
-                return reject(new DBError('Database Error', 500, 'error'));
+                return reject(httpErrors(500, `DB Error: ${error.message}`));
             }
 
             if (!user) {
-                return reject(new AppError('User not found', 404, 'error'));
+                return reject(httpErrors(404, 'User not found'));
             }
 
-            logger.info(`User ${user.email} logged`);
+            log.info(`User ${user.email} logged`);
             return resolve(user);
         });
     });
@@ -77,10 +65,10 @@ UserSchema.methods.createUser = function createUser() {
             password: this.password
         }, (error, user) => {
             if (error) {
-                return reject(new DBError(error.message, 500, 'error'));
+                return reject(httpErrors(500, error.message));
             }
 
-            logger.info(`User ${user.email} created`);
+            log.build(log.lv.ERROR, `User ${user.email} created`);
             return resolve(user);
         });
     });

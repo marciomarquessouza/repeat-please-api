@@ -60,13 +60,13 @@ describe('auth/user.js', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error')
-            expect(error.code).to.equal(500);
-            expect(error.message).to.equal('Database Error');
+            expect(error.status).to.equal(500);
+            expect(error.message).to.equal('DB Error: Sinon Error');
         });
     });
 
     it('Should return a default error', async () => {
-        find.yields(new Error(''));
+        find.yields(new Error('Sinon'));
 
         await authService.user(dummyUser._id)
         .then(() => {
@@ -74,8 +74,8 @@ describe('auth/user.js', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error')
-            expect(error.code).to.equal(500);
-            expect(error.message).to.equal('Database Error');
+            expect(error.status).to.equal(500);
+            expect(error.message).to.equal('DB Error: Sinon');
         });
     });
 
@@ -88,7 +88,7 @@ describe('auth/user.js', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error')
-            expect(error.code).to.equal(404);
+            expect(error.status).to.equal(404);
             expect(error.message).to.equal('User not found');
         });
     });

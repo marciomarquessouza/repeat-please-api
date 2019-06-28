@@ -1,27 +1,23 @@
 const config = require('../../config/config');
 const token = require('../../services/auth/token');
-const AppError = require('../../exceptions/AppException');
+const httpErrors = require('http-errors');
 
 module.exports = (req, res, next) => {
 
     const reqToken = req.headers['x-access-token'];
 
     if (!reqToken) {
-        const error = new AppError('Token was not found', 401, 'error');
+        const error = httpErrors(401, 'Token was not found');
         return next(error);
     }
 
     const { secret } = config.token;
 
-    token.verify(reqToken, secret, (error, decoded) => {
+    token.verify(reqToken, secret, (err, decoded) => {
 
-        if (error) {
-            const err = new AppError(
-                `Token was not validated: ${error.message}`,
-                401,
-                'error'
-                );
-            return next(err);
+        if (err) {
+            const appError = httpErrors(err.status, err.message);
+            return next(appError);
         }
 
         req.userId = decoded.id;

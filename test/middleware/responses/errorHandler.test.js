@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const responses = require('../../../src/middlewares/responses');
 
-describe('/middleware/responses/errorHandler', () => {
+describe('middleware/responses/errorHandler', () => {
     it('Should stop in headerSent', () => {
         const next = error => error;
         const err = new Error('Generic Error');

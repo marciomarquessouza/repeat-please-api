@@ -3,7 +3,7 @@ const sinon = require('sinon');
 const User = require('../../../src/models/users/User');
 const token = require('../../../src/services/auth/token');
 const authService = require('../../../src/services/auth');
-const AuthError = require('../../../src/exceptions/AuthException');
+const httpErrors = require('http-errors');
 
 describe('services/auth/login.js', () => {
 
@@ -54,8 +54,8 @@ describe('services/auth/login.js', () => {
         })
         .catch((error) => {
             expect(error).to.be.an('error');
-            expect(error.message).to.equal('Database Error');
-            expect(error.code).to.equal(500);
+            expect(error.message).to.equal('DB Error: Sinon Error');
+            expect(error.status).to.equal(500);
         });
     });
 
@@ -71,13 +71,13 @@ describe('services/auth/login.js', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('User not found');
-            expect(error.code).to.equal(404);
+            expect(error.status).to.equal(404);
         })
     });
 
     it('Should return Unauthorized', async () => {
         find.yields(null, dummyUser);
-        checkPass.returns(Promise.reject(new AuthError('Unauthorized', 403)));
+        checkPass.returns(Promise.reject(httpErrors(403, 'Unauthorized')));
         create.returns(Promise.resolve('my-token'));
 
         await authService.login(dummyUser.email, dummyUser.password)
@@ -87,20 +87,20 @@ describe('services/auth/login.js', () => {
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Unauthorized');
-            expect(error.code).to.equal(403);
+            expect(error.status).to.equal(403);
         });
     });
 
     it('Should return a token error', async () => {
         find.yields(null, dummyUser);
         checkPass.returns(Promise.resolve(true));
-        create.returns(Promise.reject(new AuthError('Token creation error', 500)));
+        create.returns(Promise.reject(httpErrors(500, 'Token creation error')));
 
         await authService.login(dummyUser.email, dummyUser.password)
         .catch((error) => {
             expect(error).to.be.an('error');
             expect(error.message).to.equal('Token creation error');
-            expect(error.code).to.equal(500);
+            expect(error.status).to.equal(500);
         });
     });
 });
