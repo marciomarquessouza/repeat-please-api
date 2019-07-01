@@ -1,4 +1,4 @@
-const { LyricLineSchema } = require('./LyricLine');
+const { SectionSchema } = require('./Section');
 const mongoose = require('mongoose');
 
 const LyricSchema = new mongoose.Schema({
@@ -7,7 +7,7 @@ const LyricSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    lines: [LyricLineSchema]
+    sections: [SectionSchema]
 }, {
     timestamps: true
 });
