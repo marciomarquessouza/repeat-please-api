@@ -3,6 +3,10 @@ const { WordSchema } = require('./Word');
 
 const VerseSchema = new mongoose.Schema({
     words: [WordSchema],
+    position: {
+        type: Number,
+        required: true
+    },
     start: Number,
     end: Number,
     duration: Number
