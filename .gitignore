@@ -95,3 +95,6 @@ typings/
 
 # coverage
 coverage
+
+# Logs
+logs
