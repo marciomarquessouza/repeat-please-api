@@ -1,0 +1,127 @@
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:06:00 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:06:00"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:06:00 +0000] "POST /repeat-please/lyric HTTP/1.1" 401 71 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:06:00"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:12:27 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:12:27"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:12:27 +0000] "POST /repeat-please/lyric HTTP/1.1" 401 71 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:12:27"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:13:13 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:13:13"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:13:13 +0000] "POST /repeat-please/lyric HTTP/1.1" 401 71 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:13:13"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:22:33 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:22:33"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:23:46 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:23:46"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:28:56 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:28:56"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:22:36:18 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 19:36:18"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:13:24 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:13:24"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:15:18 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:15:18"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:16:16 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:16:16"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:17:05 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:17:05"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:27:09 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:27:09"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:30:20 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:30:20"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:35:51 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:35:51"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:39:03 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:39:03"}
+[31merror[39m: Error: newLyric is not defined
+    at module.exports.create (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/controllers/lyric/create.js:2:140)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/route.js:137:13)
+    at token.verify (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/middlewares/auth/verifyToken.js:1:3159)
+    at callCallback (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/sinon/lib/sinon/behavior.js:101:25)
+    at Object.invoke (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/sinon/lib/sinon/behavior.js:145:27)
+    at Object.functionStub (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/sinon/lib/sinon/stub.js:130:47)
+    at Function.invoke (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/sinon/lib/sinon/spy.js:297:51)
+    at Object.functionStub [as verify] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/sinon/lib/sinon/spy.js:85:30)
+    at module.exports (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/middlewares/auth/verifyToken.js:1:2854)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/body-parser/lib/types/json.js:101:7)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at urlencodedParser (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/body-parser/lib/types/urlencoded.js:82:7)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:174:3)
+    at router (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at cookieParser (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/cookie-parser/index.js:57:14)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at urlencodedParser (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/body-parser/lib/types/urlencoded.js:82:7)
+    at Layer.handle [as handle_request] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:317:13)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:335:12)
+    at next (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/express/lib/router/index.js:275:10)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/body-parser/lib/read.js:130:5
+    at invokeCallback (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/raw-body/index.js:224:16)
+    at done (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/raw-body/index.js:213:7)
+    at IncomingMessage.onEnd (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/raw-body/index.js:273:7)
+    at IncomingMessage.emit (events.js:202:15)
+    at endReadableNT (_stream_readable.js:1129:12)
+    at processTicksAndRejections (internal/process/next_tick.js:76:17) {"timestamp":"2019-06-10 20:39:03"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:39:03 +0000] "POST /repeat-please/lyric HTTP/1.1" 405 75 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:39:03"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:40:08 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:40:08"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:40:08 +0000] "POST /repeat-please/lyric HTTP/1.1" 201 56 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:40:08"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:40:46 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:40:46"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:40:46 +0000] "POST /repeat-please/lyric HTTP/1.1" 201 56 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:40:46"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:41:02 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:41:02"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:41:02 +0000] "POST /repeat-please/lyric HTTP/1.1" 201 56 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:41:02"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:43:09 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:43:09"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:45:57 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:45:57"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [10/Jun/2019:23:49:25 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 20:49:25"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [11/Jun/2019:01:08:17 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 22:08:17"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [11/Jun/2019:01:10:09 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 22:10:09"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [11/Jun/2019:01:26:04 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 22:26:04"}
+[32minfo[39m: ::ffff:127.0.0.1 - - [11/Jun/2019:01:26:34 +0000] "GET /repeat-please/lyric/ping HTTP/1.1" 200 57 "-" "node-superagent/3.8.3"
+ {"timestamp":"2019-06-10 22:26:34"}
