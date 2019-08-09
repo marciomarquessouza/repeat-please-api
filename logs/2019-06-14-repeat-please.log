@@ -1,0 +1,377 @@
+[31merror[39m: Error: Lyric not found
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:21)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:4099:12
+    at model.Query.Query._completeOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1933:12)
+    at Immediate.Query.base.findOne.call (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1993:10)
+    at Immediate._onImmediate (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mquery/lib/utils.js:116:16)
+    at processImmediate (timers.js:637:19) {"timestamp":"2019-06-14 11:37:06"}
+[32minfo[39m: ::1 - - [14/Jun/2019:14:37:06 +0000] "GET /repeat-please/lyric/5cf2c386c6eb052764216154 HTTP/1.1" 404 67 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 11:37:06"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cf2c386c6eb05276421615" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:30:21)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 11:37:23"}
+[32minfo[39m: ::1 - - [14/Jun/2019:14:37:23 +0000] "GET /repeat-please/lyric/5cf2c386c6eb05276421615 HTTP/1.1" 502 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 11:37:23"}
+[31merror[39m: Error: Lyric not found
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:21)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:4099:12
+    at model.Query.Query._completeOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1933:12)
+    at Immediate.Query.base.findOne.call (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1993:10)
+    at Immediate._onImmediate (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mquery/lib/utils.js:116:16)
+    at processImmediate (timers.js:637:19) {"timestamp":"2019-06-14 11:37:39"}
+[32minfo[39m: ::1 - - [14/Jun/2019:14:37:39 +0000] "GET /repeat-please/lyric/5cf2c386c6eb052764216150 HTTP/1.1" 404 67 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 11:37:39"}
+[32minfo[39m: ::1 - - [14/Jun/2019:14:38:51 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 439 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 11:38:51"}
+[32minfo[39m: ::1 - - [14/Jun/2019:16:30:56 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 439 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 13:30:56"}
+[32minfo[39m: ::1 - - [14/Jun/2019:16:54:00 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 200 293 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 13:54:00"}
+[32minfo[39m: ::1 - - [14/Jun/2019:16:54:13 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f1 HTTP/1.1" 200 58 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 13:54:13"}
+[32minfo[39m: ::1 - - [14/Jun/2019:17:02:14 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 58 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 14:02:14"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 14:03:22"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 14:07:30"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 14:08:03"}
+[32minfo[39m: ::1 - - [14/Jun/2019:17:58:02 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 58 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 14:58:02"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 14:58:51"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 14:59:36"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:00:22"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:01:37"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:02:40"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:06:10"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:13:59"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:16:44"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:16:44 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:16:44"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:23:29"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:23:29 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:23:29"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:24:42"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:24:42 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:24:42"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:27:49"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:27:49 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:27:49"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:30:21"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:20)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:30:21"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:30:21 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:30:21"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:31:22"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:33:17"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:20)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:33:17"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:33:17 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:33:17"}
+[31merror[39m: Error: Cast to ObjectId failed for value "5cedb1362d27a634daaba2f" at path "_id" for model "Lyric"
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:33:56"}
+[31merror[39m: Error: marcio
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:20)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:33:56"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:33:56 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:33:56"}
+[31merror[39m: Error: Marcio 2
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:24:17)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:35:16"}
+[31merror[39m: Error: marcio
+    at Lyric.findOne (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:36:20)
+    at /home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/model.js:4759:16
+    at model.Query.<anonymous> (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/query.js:1979:5)
+    at model.Query._wrappedThunk [as _findOne] (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/mongoose/lib/helpers/query/wrapThunk.js:16:8)
+    at process.nextTick (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/node_modules/kareem/index.js:369:33)
+    at processTicksAndRejections (internal/process/next_tick.js:74:9) {"timestamp":"2019-06-14 15:35:16"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:35:16 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:35:16"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:38:45 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 200 58 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:38:45"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:39:33 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 78 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:39:33"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:39:51 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:39:51"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:40:06 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f1 HTTP/1.1" 200 58 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:40:06"}
+[31merror[39m: Error: Not Found
+    at Object.fetchByID (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:22:27)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 15:46:05"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:46:05 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f1 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:46:05"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:46:56 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 439 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:46:56"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:47:45 +0000] "GET /repeat-please/lyric/ HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:47:45"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:48:20 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 439 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:48:20"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:50:25 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f7 HTTP/1.1" 200 439 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:50:25"}
+[32minfo[39m: ::1 - - [14/Jun/2019:18:50:29 +0000] "GET /repeat-please/lyric/5cedb1362d27a634daaba2f HTTP/1.1" 500 149 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 15:50:29"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:04:49 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:04:49"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:10:46 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:10:46"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:11:26 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:11:26"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:11:58 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:11:58"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:12:03 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:12:03"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:12:46 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:12:46"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:12:51 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:12:51"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:13:44 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:13:44"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:14:20 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:14:20"}
+[32minfo[39m: ::1 - - [14/Jun/2019:19:14:54 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 16:14:54"}
+[32minfo[39m: User marcio.souza@email.com created {"timestamp":"2019-06-14 17:23:09"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:23:09 +0000] "POST /repeat-please/auth/register HTTP/1.1" 201 227 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:23:09"}
+[32minfo[39m: Lyric "The man who I'm" id: 5d04025f6aaf9a7484842e36 created {"timestamp":"2019-06-14 17:23:59"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:23:59 +0000] "POST /repeat-please/lyric HTTP/1.1" 201 350 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:23:59"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:26:41 +0000] "GET /repeat-please/lyric/5d04025f6aaf9a7484842e36 HTTP/1.1" 200 350 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:26:41"}
+[32minfo[39m: User marcio.souza@email.com created {"timestamp":"2019-06-14 17:28:02"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:28:02 +0000] "POST /repeat-please/auth/register HTTP/1.1" 201 227 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:28:02"}
+[32minfo[39m: Lyric "The man who I'm" id: 5d040380836fba761c5e130b created {"timestamp":"2019-06-14 17:28:48"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:28:48 +0000] "POST /repeat-please/lyric HTTP/1.1" 201 350 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:28:48"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:40:07 +0000] "POST /repeat-please/lyric/list?limit=10 HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:40:07"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:42:07 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 642 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:42:07"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:44:46 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 642 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:44:46"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:45:10 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 642 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:45:10"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:45:39 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 642 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:45:39"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:47:06 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 642 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:47:06"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:51:51 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" - - "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:51:51"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:52:24 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 500 391 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:52:24"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:55:26 +0000] "POST /repeat-please/lyric/list/query?limit=10 HTTP/1.1" 200 2583 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:55:26"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:56:05 +0000] "POST /repeat-please/lyric/list/query?limit=2 HTTP/1.1" 200 603 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:56:05"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:57:01 +0000] "POST /repeat-please/lyric/list/query?limit=2&skip=2 HTTP/1.1" 200 379 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:57:01"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:57:29 +0000] "POST /repeat-please/lyric/list/query?limit=2&skip=0 HTTP/1.1" 200 603 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:57:29"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:57:39 +0000] "POST /repeat-please/lyric/list/query?limit=10&skip=0 HTTP/1.1" 200 2583 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:57:39"}
+[32minfo[39m: ::1 - - [14/Jun/2019:20:57:58 +0000] "POST /repeat-please/lyric/list/query?limit=100&skip=0 HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 17:57:58"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:35:22 +0000] "POST /repeat-please/lyric/list/query?limit=0&skip=0 HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:35:22"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:35:40 +0000] "POST /repeat-please/lyric/list/query?limit=3&skip=0 HTTP/1.1" 200 765 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:35:40"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:36:13 +0000] "POST /repeat-please/lyric/list/query?limit=&skip=0 HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:36:13"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:36:26 +0000] "POST /repeat-please/lyric/list HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:36:26"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:36:31 +0000] "POST /repeat-please/lyric/list/ HTTP/1.1" 404 61 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:36:31"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:36:37 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:36:37"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:37:26 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 441 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:37:26"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:38:07"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:38:07 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 500 81 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:38:07"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:50:07"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:50:07 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 500 81 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:50:07"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:51:36"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:51:36 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 500 81 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:51:36"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:52:26"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:52:26 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 500 79 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:52:26"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:54:13"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:55:05 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 500 79 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:55:05"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:57:00"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:57:00 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 404 62 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:57:00"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 18:59:31"}
+[32minfo[39m: ::1 - - [14/Jun/2019:21:59:31 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 404 62 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 18:59:31"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:00:22 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:00:22"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:00:45 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 741 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:00:45"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 19:04:55"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:04:55 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 404 62 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:04:55"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 19:05:05"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:05:05 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 404 62 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:05:05"}
+[31merror[39m: Error: No Results
+    at Object.fetch (/home/marcio.souza/projetos/repeat-please/code/repeat-please-api/src/services/lyric/fetch.js:13:19)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5) {"timestamp":"2019-06-14 19:05:14"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:05:14 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 404 62 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:05:14"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:05:21 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 5383 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:05:21"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:05:54 +0000] "POST /repeat-please/lyric/list/query HTTP/1.1" 200 689 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:05:54"}
+[32minfo[39m: ::1 - - [14/Jun/2019:22:06:07 +0000] "GET /repeat-please/lyric/5cf2c9ae5586fd2f0a58ba33 HTTP/1.1" 200 370 "-" "PostmanRuntime/7.6.0"
+ {"timestamp":"2019-06-14 19:06:07"}
